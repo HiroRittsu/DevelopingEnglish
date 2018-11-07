@@ -1,0 +1,72 @@
+t=2018-09-15T16:03:33+0900 lvl=info msg="no configuration paths supplied"
+t=2018-09-15T16:03:33+0900 lvl=info msg="using configuration at default config path" path=/home/raspay/.ngrok2/ngrok.yml
+t=2018-09-15T16:03:33+0900 lvl=info msg="open config file" path=/home/raspay/.ngrok2/ngrok.yml err=nil
+t=2018-09-15T16:03:33+0900 lvl=info msg="run component" obj=controller comp="memory storage"
+t=2018-09-15T16:03:33+0900 lvl=info msg="run component" obj=controller comp="signal handler"
+t=2018-09-15T16:03:33+0900 lvl=info msg="run component" obj=controller comp="Tunnel session"
+t=2018-09-15T16:03:33+0900 lvl=info msg="run component" obj=controller comp=updater
+t=2018-09-15T16:03:33+0900 lvl=info msg="run component" obj=controller comp=web
+t=2018-09-15T16:03:33+0900 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040
+t=2018-09-15T16:03:33+0900 lvl=info msg="tunnel session started" obj=tunSess
+t=2018-09-15T16:03:33+0900 lvl=info msg="client session established" obj=csess id=f9cc6064b53d
+t=2018-09-15T16:04:04+0900 lvl=info msg=start pg=/status id=d37adcfe6bf881c3
+t=2018-09-15T16:04:04+0900 lvl=info msg=end pg=/status id=d37adcfe6bf881c3 status=200 dur=5.923125ms
+t=2018-09-15T16:05:04+0900 lvl=info msg="join connections" obj=join id=5c11fb836062 l=127.0.0.1:8000 r=203.104.156.76:55602
+t=2018-09-15T16:05:51+0900 lvl=info msg="join connections" obj=join id=076d704df8a6 l=127.0.0.1:8000 r=203.104.146.155:40712
+t=2018-09-15T16:07:54+0900 lvl=info msg="join connections" obj=join id=e4fd04ae3883 l=127.0.0.1:8000 r=203.104.146.155:53844
+t=2018-09-15T16:08:00+0900 lvl=info msg="join connections" obj=join id=6ba4532aa85e l=127.0.0.1:8000 r=203.104.146.155:54070
+t=2018-09-15T16:08:40+0900 lvl=info msg="join connections" obj=join id=27eace691442 l=127.0.0.1:8000 r=203.104.146.155:55520
+t=2018-09-15T16:08:47+0900 lvl=info msg="join connections" obj=join id=9ac87ef2bf31 l=127.0.0.1:8000 r=203.104.146.155:55810
+t=2018-09-15T16:08:56+0900 lvl=info msg="join connections" obj=join id=711a9936cde1 l=127.0.0.1:8000 r=203.104.146.155:56148
+t=2018-09-15T16:09:24+0900 lvl=info msg="join connections" obj=join id=6d9a72de886a l=127.0.0.1:8000 r=203.104.146.155:57250
+t=2018-09-15T16:09:30+0900 lvl=info msg="join connections" obj=join id=e480bc578f44 l=127.0.0.1:8000 r=203.104.146.155:57482
+t=2018-09-15T16:10:25+0900 lvl=info msg="join connections" obj=join id=c74933c89b37 l=127.0.0.1:8000 r=203.104.146.155:59556
+t=2018-09-15T16:10:40+0900 lvl=info msg="join connections" obj=join id=26cfa9e41801 l=127.0.0.1:8000 r=203.104.146.155:60088
+t=2018-09-15T16:12:36+0900 lvl=info msg="join connections" obj=join id=ad8bb28cf77e l=127.0.0.1:8000 r=203.104.146.155:40654
+t=2018-09-15T16:12:52+0900 lvl=info msg="join connections" obj=join id=8f404c305d3d l=127.0.0.1:8000 r=203.104.146.155:41300
+t=2018-09-15T16:19:08+0900 lvl=info msg="join connections" obj=join id=84b3a571d69c l=127.0.0.1:8000 r=203.104.146.155:42922
+t=2018-09-15T16:25:01+0900 lvl=info msg="join connections" obj=join id=52223c7dc8f4 l=127.0.0.1:8000 r=203.104.146.155:33574
+t=2018-09-15T19:48:37+0900 lvl=info msg="join connections" obj=join id=fd0937a6267f l=127.0.0.1:8000 r=203.104.146.155:59438
+t=2018-09-15T21:45:02+0900 lvl=info msg="join connections" obj=join id=151f805de7d6 l=127.0.0.1:8000 r=203.104.146.155:41670
+t=2018-09-16T00:12:56+0900 lvl=eror msg="heartbeat timeout, terminating session" obj=csess id=93ad5dbf6a76 clientid=5ae822602e005c7bd73e1dcba9aa291e
+t=2018-09-16T00:12:56+0900 lvl=eror msg="session closed, starting reconnect loop" obj=csess id=f9cc6064b53d err="session closed"
+t=2018-09-16T00:12:56+0900 lvl=info msg="tunnel session started" obj=tunSess
+t=2018-09-16T00:12:57+0900 lvl=info msg="client session established" obj=csess id=f9cc6064b53d
+t=2018-09-16T00:23:13+0900 lvl=eror msg="heartbeat timeout, terminating session" obj=csess id=a9d8999a6276 clientid=5ae822602e005c7bd73e1dcba9aa291e
+t=2018-09-16T00:23:13+0900 lvl=eror msg="session closed, starting reconnect loop" obj=csess id=f9cc6064b53d err="session closed"
+t=2018-09-16T00:23:23+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="dial tcp: i/o timeout"
+t=2018-09-16T00:23:33+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="dial tcp: lookup tunnel.us.ngrok.com on 127.0.1.1:53: read udp 127.0.0.1:39118->127.0.1.1:53: i/o timeout"
+t=2018-09-16T00:23:40+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="Get https://dns.google.com/resolve?cd=true&name=tunnel.us.ngrok.com&type=AAAA: x509: certificate has expired or is not yet valid"
+t=2018-09-16T00:23:43+0900 lvl=info msg="tunnel session started" obj=tunSess
+t=2018-09-16T00:23:43+0900 lvl=info msg="client session established" obj=csess id=f9cc6064b53d
+t=2018-09-16T00:23:53+0900 lvl=eror msg="session closed, starting reconnect loop" obj=csess id=f9cc6064b53d err="read tcp 192.168.11.30:45266->52.15.196.176:443: read: connection reset by peer"
+t=2018-09-16T00:23:54+0900 lvl=eror msg="failed to auth" obj=tunSess err="Your account 'Migly A 【みぐりー】' is limited to 1 simultaneous ngrok client session.\nActive ngrok client sessions in region 'us':\n  - 7fbd913ec549fa8c0f9ceb485beeaa86 (133.19.169.1)\n\nERR_NGROK_108\n"
+t=2018-09-16T00:23:54+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="Your account 'Migly A 【みぐりー】' is limited to 1 simultaneous ngrok client session.\nActive ngrok client sessions in region 'us':\n  - 7fbd913ec549fa8c0f9ceb485beeaa86 (133.19.169.1)\n\nERR_NGROK_108\n"
+t=2018-09-16T00:23:55+0900 lvl=eror msg="failed to auth" obj=tunSess err="Your account 'Migly A 【みぐりー】' is limited to 1 simultaneous ngrok client session.\nActive ngrok client sessions in region 'us':\n  - 7fbd913ec549fa8c0f9ceb485beeaa86 (133.19.169.1)\n\nERR_NGROK_108\n"
+t=2018-09-16T00:23:55+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="Your account 'Migly A 【みぐりー】' is limited to 1 simultaneous ngrok client session.\nActive ngrok client sessions in region 'us':\n  - 7fbd913ec549fa8c0f9ceb485beeaa86 (133.19.169.1)\n\nERR_NGROK_108\n"
+t=2018-09-16T00:23:57+0900 lvl=eror msg="failed to auth" obj=tunSess err="Your account 'Migly A 【みぐりー】' is limited to 1 simultaneous ngrok client session.\nActive ngrok client sessions in region 'us':\n  - 7fbd913ec549fa8c0f9ceb485beeaa86 (133.19.169.1)\n\nERR_NGROK_108\n"
+t=2018-09-16T00:23:57+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="Your account 'Migly A 【みぐりー】' is limited to 1 simultaneous ngrok client session.\nActive ngrok client sessions in region 'us':\n  - 7fbd913ec549fa8c0f9ceb485beeaa86 (133.19.169.1)\n\nERR_NGROK_108\n"
+t=2018-09-16T00:24:00+0900 lvl=eror msg="failed to auth" obj=tunSess err="Your account 'Migly A 【みぐりー】' is limited to 1 simultaneous ngrok client session.\nActive ngrok client sessions in region 'us':\n  - 7fbd913ec549fa8c0f9ceb485beeaa86 (133.19.169.1)\n\nERR_NGROK_108\n"
+t=2018-09-16T00:24:00+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="Your account 'Migly A 【みぐりー】' is limited to 1 simultaneous ngrok client session.\nActive ngrok client sessions in region 'us':\n  - 7fbd913ec549fa8c0f9ceb485beeaa86 (133.19.169.1)\n\nERR_NGROK_108\n"
+t=2018-09-16T00:24:04+0900 lvl=eror msg="failed to auth" obj=tunSess err="Your account 'Migly A 【みぐりー】' is limited to 1 simultaneous ngrok client session.\nActive ngrok client sessions in region 'us':\n  - 7fbd913ec549fa8c0f9ceb485beeaa86 (133.19.169.1)\n\nERR_NGROK_108\n"
+t=2018-09-16T00:24:04+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="Your account 'Migly A 【みぐりー】' is limited to 1 simultaneous ngrok client session.\nActive ngrok client sessions in region 'us':\n  - 7fbd913ec549fa8c0f9ceb485beeaa86 (133.19.169.1)\n\nERR_NGROK_108\n"
+t=2018-09-16T00:24:08+0900 lvl=eror msg="heartbeat timeout, terminating session" obj=csess id=24347d5fe197 clientid=5ae822602e005c7bd73e1dcba9aa291e
+t=2018-09-16T00:24:09+0900 lvl=info msg="tunnel session started" obj=tunSess
+t=2018-09-16T00:24:09+0900 lvl=info msg="client session established" obj=csess id=f9cc6064b53d
+t=2018-09-16T00:30:50+0900 lvl=eror msg="heartbeat timeout, terminating session" obj=csess id=cb6c2eaa6e7e clientid=5ae822602e005c7bd73e1dcba9aa291e
+t=2018-09-16T00:30:50+0900 lvl=eror msg="session closed, starting reconnect loop" obj=csess id=f9cc6064b53d err="session closed"
+t=2018-09-16T00:30:55+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="dial tcp: lookup tunnel.us.ngrok.com on 127.0.1.1:53: server misbehaving"
+t=2018-09-16T00:30:56+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="dial tcp: lookup tunnel.us.ngrok.com on 127.0.1.1:53: server misbehaving"
+t=2018-09-16T00:30:57+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="Get https://dns.google.com/resolve?cd=true&name=tunnel.us.ngrok.com&type=AAAA: dial tcp: lookup dns.google.com on 127.0.1.1:53: server misbehaving"
+t=2018-09-16T00:30:59+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="Get https://s3.amazonaws.com/dns.ngrok.com/tunnel.json: dial tcp: lookup s3.amazonaws.com on 127.0.1.1:53: server misbehaving"
+t=2018-09-16T00:31:02+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="[dial udp 8.8.8.8:53: connect: network is unreachable dial udp 8.8.4.4:53: connect: network is unreachable]"
+t=2018-09-16T00:31:06+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="dial tcp: lookup tunnel.us.ngrok.com on 127.0.1.1:53: server misbehaving"
+t=2018-09-16T00:31:12+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="Get https://dns.google.com/resolve?cd=true&name=tunnel.us.ngrok.com&type=AAAA: dial tcp: lookup dns.google.com on 127.0.1.1:53: server misbehaving"
+t=2018-09-16T00:31:22+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="Get https://s3.amazonaws.com/dns.ngrok.com/tunnel.json: dial tcp: lookup s3.amazonaws.com on 127.0.1.1:53: server misbehaving"
+t=2018-09-16T00:31:36+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="[dial udp 8.8.8.8:53: connect: network is unreachable dial udp 8.8.4.4:53: connect: network is unreachable]"
+t=2018-09-16T00:31:56+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="dial tcp: lookup tunnel.us.ngrok.com on 127.0.1.1:53: server misbehaving"
+t=2018-09-16T00:32:21+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="dial tcp: lookup tunnel.us.ngrok.com on 127.0.1.1:53: server misbehaving"
+t=2018-09-16T00:32:51+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="dial tcp: lookup tunnel.us.ngrok.com on 127.0.1.1:53: server misbehaving"
+t=2018-09-16T00:33:21+0900 lvl=eror msg="failed to reconnect session" obj=csess id=f9cc6064b53d err="Get https://dns.google.com/resolve?cd=true&name=tunnel.us.ngrok.com&type=A: dial tcp: lookup dns.google.com on 127.0.1.1:53: server misbehaving"
+t=2018-09-16T00:33:52+0900 lvl=info msg="tunnel session started" obj=tunSess
+t=2018-09-16T00:33:53+0900 lvl=info msg="client session established" obj=csess id=f9cc6064b53d
