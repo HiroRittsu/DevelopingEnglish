@@ -1,0 +1,12 @@
+t=2018-11-07T12:34:50+0900 lvl=info msg="no configuration paths supplied"
+t=2018-11-07T12:34:50+0900 lvl=info msg="using configuration at default config path" path=/home/raspay/.ngrok2/ngrok.yml
+t=2018-11-07T12:34:50+0900 lvl=info msg="open config file" path=/home/raspay/.ngrok2/ngrok.yml err=nil
+t=2018-11-07T12:34:50+0900 lvl=info msg="run component" obj=controller comp="signal handler"
+t=2018-11-07T12:34:50+0900 lvl=info msg="run component" obj=controller comp="memory storage"
+t=2018-11-07T12:34:50+0900 lvl=info msg="run component" obj=controller comp=updater
+t=2018-11-07T12:34:50+0900 lvl=info msg="run component" obj=controller comp="Tunnel session"
+t=2018-11-07T12:34:50+0900 lvl=info msg="run component" obj=controller comp=web
+t=2018-11-07T12:34:50+0900 lvl=warn msg="can't bind default web address, trying alternatives" obj=web addr=127.0.0.1:4040
+t=2018-11-07T12:34:50+0900 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4041
+t=2018-11-07T12:34:50+0900 lvl=info msg="tunnel session started" obj=tunSess
+t=2018-11-07T12:34:50+0900 lvl=info msg="client session established" obj=csess id=32c8e17b6b70
