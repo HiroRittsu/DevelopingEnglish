@@ -20,4 +20,5 @@ if __name__ == '__main__':
 
     while True:
         time.sleep(1)
-        print(app.receive)
+        #print(app.receive)
+        app.push_msgs("hello")
