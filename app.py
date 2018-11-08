@@ -71,6 +71,11 @@ def message_text(event):
         TextSendMessage(text=event.message.text)
     )
 
+    line_bot_api.push_message(
+        'U444d8a9ca45523b6fcda0226769d9983',
+        TextSendMessage("Hello")
+    )
+
 
 if __name__ == "__main__":
     arg_parser = ArgumentParser(
