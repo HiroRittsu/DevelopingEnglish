@@ -69,6 +69,8 @@ def message_text(event):
         TextSendMessage(text=event.message.text)
     )
 
+    line_bot_api.push_message(event.reply_token, TextSendMessage(text='Hello World!'))
+
 
 if __name__ == "__main__":
     arg_parser = ArgumentParser(
