@@ -32,7 +32,8 @@ handler = WebhookHandler(channel_secret)
 app = Flask(__name__)
 ###################################
 
-to = ''
+userId = ''
+groupId = ''
 receive = []
 
 def line_init():
@@ -56,6 +57,8 @@ line_bot_api.push_message(
 
 @app.route("/callback", methods=['POST'])
 def callback():
+    global userId
+    global groupId
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
 
@@ -65,7 +68,8 @@ def callback():
 
     print(json.loads(body))
 
-    to = json.loads(body)["events"][0]["source"]["userId"]
+    userId = json.loads(body)["events"][0]["source"]["userId"]
+    groupId = json.loads(body)["events"][0]["source"]["groupId"]
 
     # handle webhook body
     try:
@@ -86,19 +90,25 @@ def replay_msgs(event):
     )
 
 
-result = ''
 @handler.add(MessageEvent, message=TextMessage)
 def pull_msgs(event):
-    result = event.message.text
-    receive.append(result)
+    receive.append(event.message.text)
 
 
 def push_msgs(str):
-    if not to == '':
+    if not groupId == '':
         line_bot_api.push_message(
-            to,
+            groupId,
             TextSendMessage(str)
         )
+        return
+
+    elif not userId == '':
+        line_bot_api.push_message(
+            userId,
+            TextSendMessage(str)
+        )
+        return
 
     else:
         print("not addr")
