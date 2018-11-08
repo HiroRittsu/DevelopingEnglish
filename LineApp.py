@@ -70,13 +70,13 @@ class LineApp:
             event.reply_token,
             TextSendMessage(text=event.message.text)
         )
-    '''
 
     result = ''
     @handler.add(MessageEvent, message=TextMessage)
     def pull_msgs(self, event):
         self.result = event.message.text
         self.receive.append(self.result)
+    '''
 
 
     def push_msgs(self,str):
