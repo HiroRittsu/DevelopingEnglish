@@ -9,4 +9,4 @@ if __name__ == '__main__':
     while True:
         time.sleep(1)
         la.push_msgs("hello")
-        print(la.pull_msgs)
+        print(la.receive)

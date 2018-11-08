@@ -30,7 +30,7 @@ line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
 
 app = Flask(__name__)
-##################################3
+###################################
 
 to = ''
 receive = []
