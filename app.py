@@ -11,7 +11,7 @@
 #  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 #  License for the specific language governing permissions and limitations
 #  under the License.
-
+import json
 import os
 import sys
 from argparse import ArgumentParser
@@ -51,6 +51,8 @@ def callback():
     # get request body as text
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
+
+    print(json.loads(body)["events"][0]["source"]["userId"])
 
     # handle webhook body
     try:
