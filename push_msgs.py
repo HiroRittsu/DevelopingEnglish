@@ -45,7 +45,7 @@ handler = WebhookHandler(channel_secret)
 
 url = 'https://api.line.me/v2/bot/message/push'
 data = {
-    "to": "Ud1fe3db24904988cdc941eb50d5e4200",
+    "to": "U444d8a9ca45523b6fcda0226769d9983",
     "messages": [
         {
             "type": "text",
