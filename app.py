@@ -32,6 +32,7 @@ from linebot.models import (
 app = Flask(__name__)
 
 # get channel_secret and channel_access_token from your environment variable
+<<<<<<< HEAD
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
 channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
 if channel_secret is None:
@@ -43,6 +44,10 @@ if channel_access_token is None:
 
 line_bot_api = LineBotApi(channel_access_token)
 parser = WebhookParser(channel_secret)
+=======
+line_bot_api = LineBotApi('QqaQ2aalf5iE1j/IACLaufXNbVqSbY1jySzCNo2R0pckDzuK2tmMlnjEH5pXxZbz0S+v2qeE17uiTbhC5yNtHxsWB/EVeuGCWqCzuR1KxziMvkcBFAjy1kR+0fAI0oXrOzDVXm9bFAuJX8dDIWGyTAdB04t89/1O/w1cDnyilFU=')
+parser = WebhookParser('622f8b68f12dcc8140a0332622ffae57')
+>>>>>>> 327cc194e9782bd65111343596b66966d6066ffe
 
 
 @app.route("/callback", methods=['POST'])
@@ -66,10 +71,17 @@ def callback():
         if not isinstance(event.message, TextMessage):
             continue
 
+<<<<<<< HEAD
         #line_bot_api.reply_message(
         #    event.reply_token,
         #    TextSendMessage(text=event.message.text)
         #)
+=======
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=event.message.text)
+        )
+>>>>>>> 327cc194e9782bd65111343596b66966d6066ffe
 
     return 'OK'
 
@@ -82,4 +94,8 @@ if __name__ == "__main__":
     arg_parser.add_argument('-d', '--debug', default=False, help='debug')
     options = arg_parser.parse_args()
 
+<<<<<<< HEAD
     app.run(debug=options.debug, port=options.port)
+=======
+    app.run(debug=options.debug, port=options.port)
+>>>>>>> 327cc194e9782bd65111343596b66966d6066ffe
