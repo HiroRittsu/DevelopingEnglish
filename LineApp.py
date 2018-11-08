@@ -16,17 +16,18 @@ from linebot.models import (
 )
 
 app = Flask(__name__)
+handler = None
 
 class LineApp:
 
     line_bot_api = None
-    handler = None
     to = ''
     receive = []
 
     def __init__(self, channel_secret, channel_access_token):
+        global handler
         self.line_bot_api = LineBotApi(channel_access_token)
-        self.handler = WebhookHandler(channel_secret)
+        handler = WebhookHandler(channel_secret)
 
         #スレッド起動
         print("debug")
@@ -55,7 +56,7 @@ class LineApp:
         self.to = json.loads(body)["events"][0]["source"]["userId"]
 
         try:
-            self.handler.handle(body, signature)
+            handler.handle(body, signature)
         except InvalidSignatureError:
             abort(400)
 
