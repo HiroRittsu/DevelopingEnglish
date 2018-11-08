@@ -15,8 +15,22 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 
+#################handler##########
+# get channel_secret and channel_access_token from your environment variable
+channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
+channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
+if channel_secret is None:
+    print('Specify LINE_CHANNEL_SECRET as environment variable.')
+    sys.exit(1)
+if channel_access_token is None:
+    print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
+    sys.exit(1)
+
+line_bot_api = LineBotApi(channel_access_token)
+handler = WebhookHandler(channel_secret)
+
 app = Flask(__name__)
-handler = None
+##################################3
 
 class LineApp:
 
@@ -24,18 +38,13 @@ class LineApp:
     to = ''
     receive = []
 
-    def __init__(self, channel_secret, channel_access_token):
-        global handler
-        self.line_bot_api = LineBotApi(channel_access_token)
-        handler = WebhookHandler(channel_secret)
-
+    def __init__(self):
         #スレッド起動
         print("debug")
         executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
         executor.submit(self.line_init)
 
     def line_init(self):
-        print("debug")
         arg_parser = ArgumentParser(
             usage='Usage: python ' + __file__ + ' [--port <port>] [--help]'
         )
@@ -70,13 +79,13 @@ class LineApp:
             event.reply_token,
             TextSendMessage(text=event.message.text)
         )
+    '''
 
     result = ''
     @handler.add(MessageEvent, message=TextMessage)
     def pull_msgs(self, event):
         self.result = event.message.text
         self.receive.append(self.result)
-    '''
 
 
     def push_msgs(self,str):

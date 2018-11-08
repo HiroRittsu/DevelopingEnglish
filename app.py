@@ -40,11 +40,7 @@ if channel_access_token is None:
     sys.exit(1)
 
 line_bot_api = LineBotApi(channel_access_token)
-handler = ''
-
-def init_handler():
-    global handler
-    handler = WebhookHandler(channel_secret)
+handler = WebhookHandler(channel_secret)
 
 
 @app.route("/callback", methods=['POST'])
@@ -80,7 +76,8 @@ def message_text(event):
         TextSendMessage("Hello")
     )
 
-def main():
+
+if __name__ == "__main__":
     arg_parser = ArgumentParser(
         usage='Usage: python ' + __file__ + ' [--port <port>] [--help]'
     )
@@ -89,7 +86,3 @@ def main():
     options = arg_parser.parse_args()
 
     app.run(debug=options.debug, port=options.port)
-
-
-if __name__ == "__main__":
-    main()
