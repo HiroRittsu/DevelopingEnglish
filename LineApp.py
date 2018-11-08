@@ -33,6 +33,7 @@ class LineApp:
         executor.submit(self.line_init)
 
     def line_init(self):
+        print("debug")
         arg_parser = ArgumentParser(
             usage='Usage: python ' + __file__ + ' [--port <port>] [--help]'
         )
