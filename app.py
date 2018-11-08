@@ -40,7 +40,7 @@ if channel_access_token is None:
     sys.exit(1)
 
 line_bot_api = LineBotApi(channel_access_token)
-handler = WebhookHandler(channel_secret)
+handler = None
 
 def init_handler():
     global handler
