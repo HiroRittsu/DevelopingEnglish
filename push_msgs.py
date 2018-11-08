@@ -16,7 +16,6 @@ import os
 import sys
 from argparse import ArgumentParser
 
-import requests
 from flask import Flask, request, abort
 from linebot import (
     LineBotApi, WebhookHandler
@@ -58,4 +57,4 @@ headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + channel_access_token
 }
-requests.post(url, data=json.dumps(data), headers=headers)
+request.post(url, data=json.dumps(data), headers=headers)
