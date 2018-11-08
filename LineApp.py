@@ -1,4 +1,5 @@
 import json
+import concurrent.futures
 import os
 import sys
 from argparse import ArgumentParser
@@ -26,6 +27,21 @@ class LineApp:
     def __init__(self, channel_secret, channel_access_token):
         self.line_bot_api = LineBotApi(channel_access_token)
         self.handler = WebhookHandler(channel_secret)
+
+        #スレッド起動
+        executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
+        executor.submit(self.line_init)
+
+    def line_init(self):
+        arg_parser = ArgumentParser(
+            usage='Usage: python ' + __file__ + ' [--port <port>] [--help]'
+        )
+        arg_parser.add_argument('-p', '--port', default=8000, help='port')
+        arg_parser.add_argument('-d', '--debug', default=False, help='debug')
+        options = arg_parser.parse_args()
+
+        app.run(debug=options.debug, port=options.port)
+
 
     @app.route("/callback", methods=['POST'])
     def callback(self):
