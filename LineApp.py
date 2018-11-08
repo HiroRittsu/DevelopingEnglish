@@ -43,6 +43,11 @@ class LineApp:
         executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
         executor.submit(self.line_init)
 
+        line_bot_api.push_message(
+            "U444d8a9ca45523b6fcda0226769d9983",
+            TextSendMessage("hello")
+        )
+
     def line_init(self):
         arg_parser = ArgumentParser(
             usage='Usage: python ' + __file__ + ' [--port <port>] [--help]'
