@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+#  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
 #  a copy of the License at
 #
@@ -13,73 +16,70 @@ from __future__ import unicode_literals
 
 import os
 import sys
-import json
 from argparse import ArgumentParser
 
 from flask import Flask, request, abort
 from linebot import (
-	LineBotApi, WebhookParser
+    LineBotApi, WebhookParser
 )
 from linebot.exceptions import (
-	InvalidSignatureError
+    InvalidSignatureError
 )
 from linebot.models import (
-	MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage,
 )
 
 app = Flask(__name__)
 
 # get channel_secret and channel_access_token from your environment variable
-# file = open("token.json", "r")
+channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
+channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
+if channel_secret is None:
+    print('Specify LINE_CHANNEL_SECRET as environment variable.')
+    sys.exit(1)
+if channel_access_token is None:
+    print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
+    sys.exit(1)
 
-line_bot_api = LineBotApi(
-	'bWmb+oqy/Pthyrg2V9K8hO7kzKAczw5uYa9bs+Z7XrwhTR2uzEpmcRyXjomrwiCi0S+v2qeE17uiTbhC5yNtHxsWB/EVeuGCWqCzuR1KxzhwdWBs+fgk7HiV5RJ0O6QKvu+ZUhEVwRzlP/JTIN2opwdB04t89/1O/w1cDnyilFU=')
-parser = WebhookParser('622f8b68f12dcc8140a0332622ffae57')
+line_bot_api = LineBotApi(channel_access_token)
+parser = WebhookParser(channel_secret)
 
 
 @app.route("/callback", methods=['POST'])
 def callback():
-	print("debug")
-	global events
-	signature = request.headers['X-Line-Signature']
+    signature = request.headers['X-Line-Signature']
 
-	# get request body as text
-	body = request.get_data(as_text=True)
-	app.logger.info("Request body: " + body)
+    # get request body as text
+    body = request.get_data(as_text=True)
+    app.logger.info("Request body: " + body)
 
-	# parse webhook body
-	try:
-		events = parser.parse(body, signature)
-	except InvalidSignatureError:
-		abort(400)
+    # parse webhook body
+    try:
+        events = parser.parse(body, signature)
+    except InvalidSignatureError:
+        abort(400)
 
-	# if event is MessageEvent and message is TextMessage, then echo text
-	for event in events:
-		if not isinstance(event, MessageEvent):
-			continue
-		if not isinstance(event.message, TextMessage):
-			continue
-		
-		result = event.message.text
-		
-		print(result)
+    # if event is MessageEvent and message is TextMessage, then echo text
+    for event in events:
+        if not isinstance(event, MessageEvent):
+            continue
+        if not isinstance(event.message, TextMessage):
+            continue
 
-		line_bot_api.reply_message(
-			event.reply_token,
-			TextSendMessage(text=result + "だお")
-		)
-		
-	return 'OK'
+        #line_bot_api.reply_message(
+        #    event.reply_token,
+        #    TextSendMessage(text=event.message.text)
+        #)
+
+    return 'OK'
 
 
 if __name__ == "__main__":
-	arg_parser = ArgumentParser(
-		usage='Usage: python ' + __file__ + ' [--port <port>] [--help]'
-	)
-	arg_parser.add_argument('-p', '--port', type=int, default=8000, help='port')
-	arg_parser.add_argument('-d', '--debug', default=False, help='debug')
-	options = arg_parser.parse_args()
+    arg_parser = ArgumentParser(
+        usage='Usage: python ' + __file__ + ' [--port <port>] [--help]'
+    )
+    arg_parser.add_argument('-p', '--port', type=int, default=8000, help='port')
+    arg_parser.add_argument('-d', '--debug', default=False, help='debug')
+    options = arg_parser.parse_args()
 
-	app.run(debug=options.debug, port=options.port)
-	
-
+    app.run(debug=options.debug, port=options.port)
