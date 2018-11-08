@@ -76,8 +76,7 @@ def message_text(event):
         TextSendMessage("Hello")
     )
 
-
-if __name__ == "__main__":
+def main():
     arg_parser = ArgumentParser(
         usage='Usage: python ' + __file__ + ' [--port <port>] [--help]'
     )
@@ -86,3 +85,7 @@ if __name__ == "__main__":
     options = arg_parser.parse_args()
 
     app.run(debug=options.debug, port=options.port)
+
+
+if __name__ == "__main__":
+    main()
