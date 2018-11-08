@@ -65,6 +65,8 @@ def callback():
 
     print(json.loads(body))
 
+    to = json.loads(body)["events"][0]["source"]["userId"]
+
     # handle webhook body
     try:
         handler.handle(body, signature)
