@@ -42,6 +42,10 @@ if channel_access_token is None:
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
 
+def init_handler():
+    global handler
+    handler = WebhookHandler(channel_secret)
+
 
 @app.route("/callback", methods=['POST'])
 def callback():
