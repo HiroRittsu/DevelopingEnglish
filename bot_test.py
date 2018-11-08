@@ -6,9 +6,7 @@ import LineApp as LA
 
 if __name__ == '__main__':
 
-
-
-    app = LA.LineApp(channel_secret,channel_access_token)
+    app = LA.LineApp()
 
     while True:
         time.sleep(1)
