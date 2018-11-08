@@ -52,7 +52,7 @@ def callback():
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
 
-    print(json.loads(body)["events"][0]["source"]["userId"])
+    #print(json.loads(body)["events"][0]["source"]["userId"])
 
     # handle webhook body
     try:
