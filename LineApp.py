@@ -34,7 +34,6 @@ app = Flask(__name__)
 
 class LineApp:
 
-    line_bot_api = None
     to = ''
     receive = []
 
@@ -90,7 +89,7 @@ class LineApp:
 
     def push_msgs(self,str):
         if not self.to == '':
-            self.line_bot_api.push_message(
+            line_bot_api.push_message(
                 self.to,
                 TextSendMessage(str)
             )
