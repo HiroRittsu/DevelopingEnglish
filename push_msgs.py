@@ -40,21 +40,10 @@ if channel_access_token is None:
     sys.exit(1)
 
 line_bot_api = LineBotApi(channel_access_token)
-handler = WebhookHandler(channel_secret)
 
 
-url = 'https://api.line.me/v2/bot/message/push'
-data = {
-    "to": "U444d8a9ca45523b6fcda0226769d9983",
-    "messages": [
-        {
-            "type": "text",
-            "text": "Hello, user!"
-        }
-    ]
-}
-headers = {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + channel_access_token
-}
-request.post(url, data=json.dumps(data), headers=headers)
+
+line_bot_api.push_message(
+    'U444d8a9ca45523b6fcda0226769d9983',
+    TextSendMessage("Hello")
+)
