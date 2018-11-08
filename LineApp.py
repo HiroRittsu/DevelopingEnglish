@@ -29,6 +29,7 @@ class LineApp:
         self.handler = WebhookHandler(channel_secret)
 
         #スレッド起動
+        print("debug")
         executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
         executor.submit(self.line_init)
 
