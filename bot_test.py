@@ -11,7 +11,7 @@ if __name__ == '__main__':
         time.sleep(1)
         msg = app.get_msgs()
 
-        if not msg == '':
+        if not len(msg) == 0:
             id = msg[0]
 
         if not id == '':
