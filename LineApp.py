@@ -15,6 +15,10 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 
+msgs = []
+userId = ''
+groupId = ''
+
 #################handler##########
 # get channel_secret and channel_access_token from your environment variable
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
@@ -32,29 +36,6 @@ handler = WebhookHandler(channel_secret)
 app = Flask(__name__)
 ###################################
 
-userId = ''
-groupId = ''
-receive = []
-
-def line_init():
-    arg_parser = ArgumentParser(
-        usage='Usage: python ' + __file__ + ' [--port <port>] [--help]'
-    )
-    arg_parser.add_argument('-p', '--port', default=8000, help='port')
-    arg_parser.add_argument('-d', '--debug', default=False, help='debug')
-    options = arg_parser.parse_args()
-
-    app.run(debug=options.debug, port=options.port)
-
-#スレッド起動
-executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
-executor.submit(line_init)
-
-line_bot_api.push_message(
-    "U444d8a9ca45523b6fcda0226769d9983",
-    TextSendMessage("hello")
-)
-
 @app.route("/callback", methods=['POST'])
 def callback():
     global userId
@@ -69,7 +50,7 @@ def callback():
     print(json.loads(body))
 
     userId = json.loads(body)["events"][0]["source"]["userId"]
-    groupId = json.loads(body)["events"][0]["source"]["groupId"]
+    #groupId = json.loads(body)["events"][0]["source"]["groupId"]
 
     # handle webhook body
     try:
@@ -80,35 +61,46 @@ def callback():
 
     return 'OK'
 
-
-
-@handler.add(MessageEvent, message=TextMessage)
-def replay_msgs(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=event.message.text)
-    )
-
-
 @handler.add(MessageEvent, message=TextMessage)
 def pull_msgs(event):
-    receive.append(event.message.text)
+    msgs.append(event.message.text)
 
 
-def push_msgs(str):
-    if not groupId == '':
-        line_bot_api.push_message(
-            groupId,
-            TextSendMessage(str)
+class LineApp:
+
+    def __init__(self):
+        # スレッド起動
+        executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
+        executor.submit(self.line_init)
+
+    def line_init(self):
+        arg_parser = ArgumentParser(
+            usage='Usage: python ' + __file__ + ' [--port <port>] [--help]'
         )
-        return
+        arg_parser.add_argument('-p', '--port', default=8000, help='port')
+        arg_parser.add_argument('-d', '--debug', default=False, help='debug')
+        options = arg_parser.parse_args()
 
-    elif not userId == '':
-        line_bot_api.push_message(
-            userId,
-            TextSendMessage(str)
-        )
-        return
+        app.run(debug=options.debug, port=options.port)
 
-    else:
-        print("not addr")
+    def push_msgs(self,str):
+        if not groupId == '':
+            line_bot_api.push_message(
+                groupId,
+                TextSendMessage(str)
+            )
+            return
+
+        elif not userId == '':
+            line_bot_api.push_message(
+                userId,
+                TextSendMessage(str)
+            )
+            return
+
+        else:
+            print("not addr")
+
+    def get_msgs(self):
+        if not len(msgs) == 0:
+            pass
