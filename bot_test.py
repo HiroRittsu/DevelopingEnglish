@@ -1,11 +1,11 @@
 import time
 import LineApp as la
 
-id = ''
-
 if __name__ == '__main__':
 
     app = la.LineApp()
+    msg = []
+    id = ''
 
     while True:
         time.sleep(1)
