@@ -69,6 +69,7 @@ def pull_msgs(event):
 #受け取り
 @app.route("/callback", methods=['POST'])
 def callback():
+    id = ''
     events = None
     signature = request.headers['X-Line-Signature']
 
@@ -84,13 +85,11 @@ def callback():
     except InvalidSignatureError:
         abort(400)
 
-    userId = json.loads(body)["events"][0]["source"]["userId"]
-    groupID = json.loads(body)["events"][0]["source"]["groupID"]
+    if 'userId' in body:
+        id = json.loads(body)["events"][0]["source"]["userId"]
 
-    if groupID == '':
-        id = userId
-    else:
-        id = groupID
+    if 'groupID' in body:
+        id = json.loads(body)["events"][0]["source"]["groupID"]
 
     # if event is MessageEvent and message is TextMessage, then echo text
     for event in events:
