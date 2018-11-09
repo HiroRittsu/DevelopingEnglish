@@ -88,8 +88,8 @@ def callback():
     if 'userId' in body:
         id = json.loads(body)["events"][0]["source"]["userId"]
 
-    if 'groupID' in body:
-        id = json.loads(body)["events"][0]["source"]["groupID"]
+    if 'groupId' in body:
+        id = json.loads(body)["events"][0]["source"]["groupId"]
 
     # if event is MessageEvent and message is TextMessage, then echo text
     for event in events:
