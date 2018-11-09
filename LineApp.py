@@ -6,7 +6,7 @@ from argparse import ArgumentParser
 
 from flask import Flask, request, abort
 from linebot import (
-    LineBotApi, WebhookHandler
+    LineBotApi, WebhookHandler, WebhookParser
 )
 from linebot.exceptions import (
     InvalidSignatureError
@@ -32,10 +32,12 @@ if channel_access_token is None:
 
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
+parser = WebhookParser(channel_secret)
 
 app = Flask(__name__)
 ###################################
 
+'''
 @app.route("/callback", methods=['POST'])
 def callback():
     global userId
@@ -60,20 +62,48 @@ def callback():
         abort(400)
 
     return 'OK'
-
+    
 @handler.add(MessageEvent, message=TextMessage)
 def pull_msgs(event):
     msgs.append(event.message.text)
 
+'''
+@app.route("/callback", methods=['POST'])
+def callback():
+    events = None
+    signature = request.headers['X-Line-Signature']
+
+    # get request body as text
+    body = request.get_data(as_text=True)
+    app.logger.info("Request body: " + body)
+
+    userId = json.loads(body)["events"][0]["source"]["userId"]
+
+    # parse webhook body
+    try:
+        events = parser.parse(body, signature)
+    except InvalidSignatureError:
+        abort(400)
+
+    # if event is MessageEvent and message is TextMessage, then echo text
+    for event in events:
+        if not isinstance(event, MessageEvent):
+            continue
+        if not isinstance(event.message, TextMessage):
+            continue
+
+        msgs.append([userId, event.message.text])
+
+    return 'OK'
 
 class LineApp:
 
     def __init__(self):
         # スレッド起動
         executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
-        executor.submit(self.line_init)
+        executor.submit(self.__line_init__)
 
-    def line_init(self):
+    def __line_init__(self):
         arg_parser = ArgumentParser(
             usage='Usage: python ' + __file__ + ' [--port <port>] [--help]'
         )
@@ -83,17 +113,10 @@ class LineApp:
 
         app.run(debug=options.debug, port=options.port)
 
-    def push_msgs(self,str):
-        if not groupId == '':
+    def push_msgs(self,id,str):
+        if not id == '':
             line_bot_api.push_message(
-                groupId,
-                TextSendMessage(str)
-            )
-            return
-
-        elif not userId == '':
-            line_bot_api.push_message(
-                userId,
+                id,
                 TextSendMessage(str)
             )
             return
@@ -103,4 +126,4 @@ class LineApp:
 
     def get_msgs(self):
         if not len(msgs) == 0:
-            pass
+            return msgs.pop(0)
