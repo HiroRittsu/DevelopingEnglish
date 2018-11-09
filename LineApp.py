@@ -16,8 +16,6 @@ from linebot.models import (
 )
 
 msgs = []
-userId = ''
-groupId = ''
 
 #################handler##########
 # get channel_secret and channel_access_token from your environment variable
@@ -68,6 +66,7 @@ def pull_msgs(event):
     msgs.append(event.message.text)
 
 '''
+#受け取り
 @app.route("/callback", methods=['POST'])
 def callback():
     events = None
@@ -75,15 +74,23 @@ def callback():
 
     # get request body as text
     body = request.get_data(as_text=True)
-    app.logger.info("Request body: " + body)
+    #app.logger.info("Request body: " + body)
 
-    userId = json.loads(body)["events"][0]["source"]["userId"]
+    print(body)
 
     # parse webhook body
     try:
         events = parser.parse(body, signature)
     except InvalidSignatureError:
         abort(400)
+
+    userId = json.loads(body)["events"][0]["source"]["userId"]
+    groupID = json.loads(body)["events"][0]["source"]["groupID"]
+
+    if groupID == '':
+        id = userId
+    else:
+        id = groupID
 
     # if event is MessageEvent and message is TextMessage, then echo text
     for event in events:
@@ -92,9 +99,11 @@ def callback():
         if not isinstance(event.message, TextMessage):
             continue
 
-        msgs.append([userId, event.message.text])
+        msgs.append([id, event.message.text])
 
     return 'OK'
+
+#####################################################
 
 class LineApp:
 
@@ -113,7 +122,7 @@ class LineApp:
 
         app.run(debug=options.debug, port=options.port)
 
-    def push_msgs(self,id,str):
+    def push_msgs(self, id, str):
         if not id == '':
             line_bot_api.push_message(
                 id,
@@ -125,5 +134,4 @@ class LineApp:
             print("not addr")
 
     def get_msgs(self):
-        if not len(msgs) == 0:
-            return msgs.pop(0)
+        return msgs
