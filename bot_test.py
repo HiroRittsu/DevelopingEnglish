@@ -17,4 +17,4 @@ if __name__ == '__main__':
 
         app.push_msgs('U444d8a9ca45523b6fcda0226769d9983', 'hello')
 
-        app.push_img('U444d8a9ca45523b6fcda0226769d9983', 'http://alaqsatranslation.com/wp-content/uploads/2016/11/Buisiness-Translation-300x215.jpg')
+        app.push_img('U444d8a9ca45523b6fcda0226769d9983', './test/buisiness.jpg')
