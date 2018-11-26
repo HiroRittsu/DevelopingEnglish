@@ -17,4 +17,4 @@ if __name__ == '__main__':
 
         app.push_msgs('U444d8a9ca45523b6fcda0226769d9983', 'hello')
 
-        app.push_img('U444d8a9ca45523b6fcda0226769d9983', 'http://597e077e.ngrok.io/')
+        app.push_img('U444d8a9ca45523b6fcda0226769d9983', 'https://www.eonet.ne.jp/~davidjordan/Commun/Images/buisiness/TopImage-buisiness.jpg')
