@@ -12,7 +12,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage, ImageSendMessage,
 )
 
 msgs = []
@@ -126,6 +126,20 @@ class LineApp:
             line_bot_api.push_message(
                 id,
                 TextSendMessage(str)
+            )
+            return
+
+        else:
+            print("not addr")
+
+    def push_img(self, id, url):
+        if not id == '':
+            line_bot_api.push_message(
+                id,
+                ImageSendMessage(
+                    original_content_url=url,
+                    preview_image_url=url
+                )
             )
             return
 
