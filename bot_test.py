@@ -15,6 +15,6 @@ if __name__ == '__main__':
 
         print(app.get_msgs())
 
-        app.push_msgs('U444d8a9ca45523b6fcda0226769d9983', 'hello')
+        app.push_msgs('U444d8a9ca45523b6fcda0226769d9983', '尊い...っっ!!')
 
-        app.push_img('U444d8a9ca45523b6fcda0226769d9983', 'https://www.eonet.ne.jp/~davidjordan/Commun/Images/buisiness/TopImage-buisiness.jpg')
+        app.push_img('U444d8a9ca45523b6fcda0226769d9983', 'https://cdn.ibispaint.com/movie/372/896/372896921/image372896921.png')
