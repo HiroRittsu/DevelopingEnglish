@@ -21,5 +21,4 @@ def getImageURL(keyword):
             if "http" in e and "\"ou\"" in e:
                 image_links.append(e.replace("\"", "").replace("ou:", ""))
 
-    print(image_links)
     return image_links

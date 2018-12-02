@@ -2,7 +2,11 @@ CREATE TABLE `words` (
           `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT "ID",
           `word` VARCHAR(256) NOT NULL COMMENT "英単語",
           `meaning` VARCHAR(256) NOT NULL COMMENT "意味",
-          `answer_rate` double NOT NULL COMMENT "正答率",
+          `answer_count` int NOT NULL COMMENT "回答回数",
+          `right_rate` double NOT NULL COMMENT "正答率",
           `answer_time` double NOT NULL COMMENT "回答時間",
           `image` VARCHAR(1024) NOT NULL COMMENT "画像"
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+        
+        
+INSERT INTO words(id,word,meaning,answer_count,right_rate,answer_time,image) values(1, "buisiness","ビジネス",0,0,0,"html");
