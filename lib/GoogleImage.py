@@ -2,6 +2,7 @@ from urllib import request as req
 from urllib import parse
 import bs4
 
+
 def getImageURL(keyword):
     image_links = []
 
@@ -21,4 +22,9 @@ def getImageURL(keyword):
             if "http" in e and "\"ou\"" in e:
                 image_links.append(e.replace("\"", "").replace("ou:", ""))
 
-    return image_links
+    for link in image_links:
+        print(link)
+        if 'https://' in link:
+            return link
+
+    return 'https://www.suzuran-dc.com/wp-content/uploads/non-image.jpg'

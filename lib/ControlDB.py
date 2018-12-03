@@ -34,5 +34,5 @@ def insert(sql, datas):
     :param datas:
     :return:
     '''
-    cur.executemany(sql, datas)
+    cur.execute(sql, datas)
     conn.commit()

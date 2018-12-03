@@ -32,15 +32,22 @@ for page in urls:
 
 print(words)
 
-print(GoogleImage.getImageURL(words[1][0])[0])
+print(GoogleImage.getImageURL(words[1][0]))
 
 i = 1
 for word in words:
-    image_url = GoogleImage.getImageURL(word[0])[0]
-    sql = "insert into words values (%s, %s, %s, %s, %s, %s, %s)"
+    image_url = GoogleImage.getImageURL(word[0])
+    words = "insert into words values (%s, %s, %s)"
+    image = "insert into image values (%s, %s)"
+    userdata = "insert into userdata values (%s, %s, %s, %s)"
     datas = [
-        (i, word[0], word[1], 0, 0.0, 0.0, image_url),
+        (i, word[0], word[1]),
+        (i, image_url),
+        (i, 0, 0.0, 0.0)
     ]
-    ControlDB.insert(sql, datas)
+
+    ControlDB.insert(words, datas[0])
+    ControlDB.insert(image, datas[1])
+    ControlDB.insert(userdata, datas[2])
     print(i)
     i += 1
