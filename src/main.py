@@ -2,7 +2,7 @@ import sys
 import time
 
 import schedule
-sys.path.append('./lib/')
+sys.path.append('../lib/')
 import LineApp
 
 app = LineApp.LineApp()
