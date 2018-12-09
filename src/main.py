@@ -20,8 +20,8 @@ def job():
     question_ids = random.sample(ControlDB.select('select id from userdata'), 10)
 
     for question_id in question_ids:
-        question = ControlDB.select(
-            'select * from words where id=' + str(question_id).replace(',)', '').replace('(', ''))
+        question = str(ControlDB.select(
+            'select * from words where id=' + str(question_id).replace(',)', '').replace('(', ''))).split(',')
 
         app.push_msgs(userID, question[1])
 
