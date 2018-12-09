@@ -13,6 +13,8 @@ if __name__ == '__main__':
     while True:
         time.sleep(1)
         # msg = app.get_msgs()
+
+        print(type(app.get_msgs()))
         msg.append(app.get_msgs())
 
         print(msg.pop(0))
