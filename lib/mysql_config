@@ -29,3 +29,6 @@ CREATE TABLE `userdata` (
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
         
 INSERT INTO words(id,word,meaning,answer_count,right_rate,answer_time,image) values(1, "buisiness","ビジネス",0,0,0,"html");
+
+
+mysqldump -u linebot -p testdb > export.sql
