@@ -25,7 +25,7 @@ def __init__(database):
 
 def insert(sql, datas):
     '''
-        -example-
+    -example-
         sql = 'insert into test values (%s, %s)'
         datas = [
             (2, 'foo'),
@@ -52,17 +52,13 @@ def update(sql):
     conn.commit()
 
 
-def select(sql, data):
+def select(sql):
     '''
-        -example-
-        sql = 'select * from test where id = %s'
-        datas = [
-            (2),
-            (3)
-        ]
+    -example-
+        sql = 'select * from test where id = 2'
     :param sql:
     :return:
     '''
     global conn, cur
-    cur.execute(sql, data)
+    cur.execute(sql)
     return cur.fetchall()
