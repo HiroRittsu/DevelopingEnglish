@@ -99,7 +99,7 @@ def callback():
             continue
         if not isinstance(event.message, TextMessage):
             continue
-        print(event.message.text)
+
         msgs.append([id, event.message.text])
 
     return 'OK'
