@@ -66,7 +66,9 @@ def pull_msgs(event):
     msgs.append(event.message.text)
 
 '''
-#受け取り
+
+
+# 受け取り
 @app.route("/callback", methods=['POST'])
 def callback():
     id = ''
@@ -75,7 +77,7 @@ def callback():
 
     # get request body as text
     body = request.get_data(as_text=True)
-    #app.logger.info("Request body: " + body)
+    # app.logger.info("Request body: " + body)
 
     print(body)
 
@@ -97,10 +99,11 @@ def callback():
             continue
         if not isinstance(event.message, TextMessage):
             continue
-
+        print(event.message.text)
         msgs.append([id, event.message.text])
 
     return 'OK'
+
 
 #####################################################
 
