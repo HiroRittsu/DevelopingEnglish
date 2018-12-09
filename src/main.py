@@ -15,7 +15,7 @@ userID = 'U444d8a9ca45523b6fcda0226769d9983'
 
 
 def answer():
-    while len(app.get_msgs) == 0:
+    while len(app.get_msgs()) == 0:
         print('wait')
 
     return app.get_msgs.pop(0)[1]
