@@ -3,6 +3,7 @@ import mysql.connector
 conn = None
 cur = None
 
+
 def __init__(database):
     global conn, cur
     '''
@@ -21,8 +22,8 @@ def __init__(database):
         conn.ping(True)
     cur = conn.cursor(buffered=True)
 
+
 def insert(sql, datas):
-    global conn, cur
     '''
         -example-
         sql = 'insert into test values (%s, %s)'
@@ -34,5 +35,34 @@ def insert(sql, datas):
     :param datas:
     :return:
     '''
+    global conn, cur
     cur.execute(sql, datas)
     conn.commit()
+
+
+def update(sql):
+    '''
+    -example-
+        sql = 'update userdata set answer_count=1,right_rate=1 where id=2'
+    :param sql:
+    :return:
+    '''
+    global conn, cur
+    cur.execute(sql)
+    conn.commit()
+
+
+def select(sql, data):
+    '''
+        -example-
+        sql = 'select * from test where id = %s'
+        datas = [
+            (2),
+            (3)
+        ]
+    :param sql:
+    :return:
+    '''
+    global conn, cur
+    cur.execute(sql, data)
+    return cur.fetchall()
