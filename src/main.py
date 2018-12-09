@@ -14,6 +14,13 @@ ControlDB.init('botDB')
 userID = 'U444d8a9ca45523b6fcda0226769d9983'
 
 
+def answer():
+    while len(app.get_msgs) == 0:
+        print('wait')
+
+    return app.get_msgs.pop(0)[1]
+
+
 def job():
     print("job!")
     app.push_msgs(userID, 'start')
@@ -24,6 +31,8 @@ def job():
             'select * from words where id=' + str(question_id).replace(',)', '').replace('(', ''))).split(',')
 
         app.push_msgs(userID, question[1])
+
+        print(answer())
 
 
 schedule.every(10).seconds.do(job)
