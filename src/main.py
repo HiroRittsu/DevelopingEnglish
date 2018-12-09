@@ -20,8 +20,10 @@ def job():
     question_ids = random.sample(ControlDB.select('select id from userdata'), 10)
 
     for question_id in question_ids:
-        print(ControlDB.select('select * from words where id=' + str(question_id).replace(',)', '').replace('(', ''))
-              )
+        question = ControlDB.select(
+            'select * from words where id=' + str(question_id).replace(',)', '').replace('(', ''))
+
+        app.push_msgs(userID, question[1])
 
 
 schedule.every(10).seconds.do(job)
