@@ -3,6 +3,7 @@ import sys
 
 import requests
 import lxml.html
+
 sys.path.append('../lib/')
 import GoogleImage
 import ControlDB
@@ -40,17 +41,17 @@ print(GoogleImage.getImageURL(words[1][0]))
 i = 1
 for word in words:
     image_url = GoogleImage.getImageURL(word[0])
-    words = "insert into words values (%s, %s, %s)"
-    image = "insert into image values (%s, %s)"
-    userdata = "insert into userdata values (%s, %s, %s, %s)"
+    words_sql = "insert into words values (%s, %s, %s)"
+    image_sql = "insert into image values (%s, %s)"
+    userdata_sql = "insert into userdata values (%s, %s, %s, %s)"
     datas = [
         (i, word[0], word[1]),
         (i, image_url),
         (i, 0, 0.0, 0.0)
     ]
 
-    ControlDB.insert(words, datas[0])
-    ControlDB.insert(image, datas[1])
-    ControlDB.insert(userdata, datas[2])
+    ControlDB.insert(words_sql, datas[0])
+    ControlDB.insert(image_sql, datas[1])
+    ControlDB.insert(userdata_sql, datas[2])
     print(i)
     i += 1
