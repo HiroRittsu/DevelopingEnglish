@@ -34,8 +34,6 @@ words = []
 for page in urls:
     getWords(words, page)
 
-print(words)
-
 print(GoogleImage.getImageURL(words[1][0]))
 
 i = 1
@@ -49,7 +47,7 @@ for word in words:
         (i, image_url),
         (i, 0, 0.0, 0.0)
     ]
-
+    print('debu', datas[0])
     ControlDB.insert(words_sql, datas[0])
     ControlDB.insert(image_sql, datas[1])
     ControlDB.insert(userdata_sql, datas[2])
