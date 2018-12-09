@@ -20,7 +20,7 @@ def job():
     question_ids = random.sample(ControlDB.select('select id from userdata'), 10)
 
     for question_id in question_ids:
-        print(ControlDB.select('select * from words where id=', str(question_id).replace(',)', '').replace('(', ''))
+        print(ControlDB.select('select * from words where id=' + str(question_id).replace(',)', '').replace('(', ''))
               )
 
 
