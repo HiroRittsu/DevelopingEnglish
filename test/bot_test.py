@@ -1,5 +1,6 @@
 import time
 import sys,os
+sys.path.append('../lib/')
 import LineApp as la
 
 if __name__ == '__main__':
