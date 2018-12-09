@@ -4,7 +4,7 @@ conn = None
 cur = None
 
 
-def __init__(database):
+def init(database):
     global conn, cur
     '''
     :param database:
