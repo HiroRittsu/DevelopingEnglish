@@ -20,7 +20,7 @@ def job():
     question_ids = random.sample(ControlDB.select('select id from userdata'), 10)
 
     for question_id in question_ids:
-        print(question_id)
+        print(int(str(question_id).replace(',)', '').replace('(', '')))
 
 
 schedule.every(10).seconds.do(job)
