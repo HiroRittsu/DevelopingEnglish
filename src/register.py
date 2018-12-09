@@ -1,10 +1,13 @@
 # 英単語の情報をスクレイピング
+import sys
+
 import requests
 import lxml.html
-from lib import GoogleImage
-from lib import ControlDB
+sys.path.append('../lib/')
+import GoogleImage
+import ControlDB
 
-ControlDB.__init__("botDB")
+ControlDB.init("botDB")
 
 urls = []
 urls.append('http://www.eigo-duke.com/tango/TOEIC1-300.html')
