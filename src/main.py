@@ -6,7 +6,7 @@ import schedule
 
 sys.path.append('../lib/')
 import LineApp
-from lib import ControlDB
+import ControlDB
 
 app = LineApp.LineApp()
 ControlDB.init('botDB')
