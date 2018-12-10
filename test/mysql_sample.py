@@ -10,4 +10,5 @@ ControlDB.init('botDB')
 
 # print(str(random.sample(ControlDB.select('select id from userdata'), 10)[0]).replace(',)', '').replace('(', ''))
 
-ControlDB.update('update userdata set answer_count=1,right_rate=2 where id=2')
+# ControlDB.update('update userdata set answer_count=1,right_rate=2 where id=2')
+print(ControlDB.select('select * from words where id = 2')[0][2])

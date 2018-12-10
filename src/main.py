@@ -39,8 +39,10 @@ def job():
 
     count = 1
     for question_id in question_ids:
-        question = str(ControlDB.select(
-            'select * from words where id=' + str(question_id).replace(',)', '').replace('(', ''))).split(',')
+        question = ControlDB.select(
+            'select * from words where id=' + str(question_id))[0]
+
+        print(question)
 
         app.push_msgs(userID, '●問題' + str(count) + '/5\n  > ' + question[1].replace('\'', ''))
         print(question[2])
