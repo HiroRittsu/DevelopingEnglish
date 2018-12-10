@@ -39,7 +39,7 @@ def job():
 
     count = 1
     for question_id in question_ids:
-        print(question_id[0][0])
+        print(question_id[0])
         question = ControlDB.select(
             'select * from words where id=' + str(question_id[0][0]))[0]
 
@@ -64,7 +64,7 @@ def job():
     app.push_msgs(userID, '終了')
 
 
-schedule.every(10).seconds.do(job)
+schedule.every(1).seconds.do(job)
 
 
 def main():
