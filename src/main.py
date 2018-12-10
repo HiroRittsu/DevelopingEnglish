@@ -22,11 +22,11 @@ def getAnswer():
 
 def judgeAnswer(input, right_answers):
     status = -1
+    print(right_answers)
     for a in right_answers.split('、'):
-        print(a.replace(')]', '').replace('\'', '').replace(' ', ''))
         if input in a:
             status = 0
-        if a.replace(')]', '').replace('\'', '').replace(' ', '') == input:
+        if a == input:
             status = 1
 
     return status
@@ -42,8 +42,6 @@ def job():
         print(question_id[0])
         question = ControlDB.select(
             'select * from words where id=' + str(question_id[0]))[0]
-
-        print(question)
 
         app.push_msgs(userID, '●問題' + str(count) + '/5\n  > ' + question[1])
         print(question[2])
