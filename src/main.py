@@ -21,11 +21,10 @@ def getAnswer():
 
 
 def judgeAnswer(input, right_answers):
-    flag = False
-    for a in right_answers:
-        if input == a:
-            flag = True
-    return flag
+    if input in right_answers:
+        return True
+    else:
+        return False
 
 
 def job():
@@ -42,7 +41,7 @@ def job():
         answer = getAnswer()
 
         print(answer)
-        print(judgeAnswer(answer, question[2].split('、')))
+        print(judgeAnswer(answer, question[2]))
 
 
 schedule.every(10).seconds.do(job)
