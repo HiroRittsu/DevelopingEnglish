@@ -24,7 +24,7 @@ def answer():
 def job():
     print("job!")
     app.push_msgs(userID, 'start')
-    question_ids = random.sample(ControlDB.select('select id from userdata'), 10)
+    question_ids = random.sample(ControlDB.select('select id from userdata'), 5)
 
     for question_id in question_ids:
         question = str(ControlDB.select(
