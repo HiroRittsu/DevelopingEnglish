@@ -14,11 +14,18 @@ ControlDB.init('botDB')
 userID = 'U444d8a9ca45523b6fcda0226769d9983'
 
 
-def answer():
+def getAnswer():
     while len(app.get_msgs()) == 0:
-        print('wait')
         time.sleep(0.1)
     return app.get_msgs().pop(0)[1]
+
+
+def judgeAnswer(input, right_answers):
+    flag = False
+    for a in right_answers:
+        if input == a:
+            flag = True
+    return flag
 
 
 def job():
@@ -32,7 +39,10 @@ def job():
 
         app.push_msgs(userID, question[1])
 
-        print(answer())
+        answer = getAnswer()
+
+        print(answer)
+        print(judgeAnswer(answer, question[2].split('、')))
 
 
 schedule.every(10).seconds.do(job)
