@@ -41,7 +41,7 @@ def job():
     for question_id in question_ids:
         print(question_id[0])
         question = ControlDB.select(
-            'select * from words where id=' + str(question_id[0][0]))[0]
+            'select * from words where id=' + str(question_id[0]))
 
         print(question)
 
