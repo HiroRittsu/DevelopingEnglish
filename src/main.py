@@ -24,8 +24,8 @@ def judgeAnswer(input, right_answers):
     print(right_answers)
     flag = False
     for a in right_answers.split('、'):
-        print(a)
-        if a == input:
+        print(a.replace(')]', '').replace('\'', ''))
+        if a.replace(')]', '').replace('\'', '') == input:
             flag = True
     return flag
 
@@ -39,7 +39,7 @@ def job():
         question = str(ControlDB.select(
             'select * from words where id=' + str(question_id).replace(',)', '').replace('(', ''))).split(',')
 
-        app.push_msgs(userID, question[1])
+        app.push_msgs(userID, question[1].replace('\'', ''))
 
         answer = getAnswer()
 
