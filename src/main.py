@@ -42,12 +42,21 @@ def job():
         question = str(ControlDB.select(
             'select * from words where id=' + str(question_id).replace(',)', '').replace('(', ''))).split(',')
 
-        app.push_msgs(userID, '●問題' + str(count) + '/5\n\n' + question[1].replace('\'', ''))
+        app.push_msgs(userID, '●問題' + str(count) + '/5\n  > ' + question[1].replace('\'', ''))
         print(question[2])
 
         answer = getAnswer()
 
-        print(judgeAnswer(answer, question[2]))
+        result = judgeAnswer(answer, question[2])
+
+        if result == -1:
+            app.push_msgs(userID, '不正解')
+        elif result == 0:
+            app.push_msgs(userID, '惜しい')
+        else:
+            app.push_msgs(userID, '正解')
+
+        count += 1
 
     app.push_msgs(userID, '終了')
 
