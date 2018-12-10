@@ -37,16 +37,19 @@ def job():
     app.push_msgs(userID, 'start')
     question_ids = random.sample(ControlDB.select('select id from userdata'), 5)
 
+    count = 1
     for question_id in question_ids:
         question = str(ControlDB.select(
             'select * from words where id=' + str(question_id).replace(',)', '').replace('(', ''))).split(',')
 
-        app.push_msgs(userID, question[1].replace('\'', ''))
+        app.push_msgs(userID, '●問題' + str(count) + '/5\n\n' + question[1].replace('\'', ''))
         print(question[2])
 
         answer = getAnswer()
 
         print(judgeAnswer(answer, question[2]))
+
+    app.push_msgs(userID, '終了')
 
 
 schedule.every(10).seconds.do(job)
