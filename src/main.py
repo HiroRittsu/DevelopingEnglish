@@ -22,11 +22,12 @@ def getAnswer():
 
 def judgeAnswer(input, right_answers):
     print(right_answers)
-    print(len(right_answers.split('、')))
-    if input in right_answers:
-        return True
-    else:
-        return False
+    flag = False
+    for a in right_answers.split('、'):
+        print(a)
+        if a == input:
+            flag = True
+    return flag
 
 
 def job():
