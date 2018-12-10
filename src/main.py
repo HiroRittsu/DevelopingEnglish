@@ -21,12 +21,15 @@ def getAnswer():
 
 
 def judgeAnswer(input, right_answers):
-    flag = False
+    status = -1
     for a in right_answers.split('、'):
         print(a.replace(')]', '').replace('\'', '').replace(' ', ''))
+        if input in a:
+            status = 0
         if a.replace(')]', '').replace('\'', '').replace(' ', '') == input:
-            flag = True
-    return flag
+            status = 1
+
+    return status
 
 
 def job():
@@ -39,10 +42,10 @@ def job():
             'select * from words where id=' + str(question_id).replace(',)', '').replace('(', ''))).split(',')
 
         app.push_msgs(userID, question[1].replace('\'', ''))
+        print(question[2])
 
         answer = getAnswer()
 
-        print(answer)
         print(judgeAnswer(answer, question[2]))
 
 
