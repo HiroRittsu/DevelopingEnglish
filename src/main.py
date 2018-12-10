@@ -41,11 +41,11 @@ def job():
     for question_id in question_ids:
         print(question_id[0])
         question = ControlDB.select(
-            'select * from words where id=' + str(question_id[0]))
+            'select * from words where id=' + str(question_id[0]))[0]
 
         print(question)
 
-        app.push_msgs(userID, '●問題' + str(count) + '/5\n  > ' + question[1].replace('\'', ''))
+        app.push_msgs(userID, '●問題' + str(count) + '/5\n  > ' + question[1])
         print(question[2])
 
         answer = getAnswer()
