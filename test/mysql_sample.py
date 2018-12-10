@@ -1,7 +1,7 @@
 import sys
 
 sys.path.append('../lib/')
-from lib import ControlDB
+import ControlDB
 import random
 
 ControlDB.init('botDB')
