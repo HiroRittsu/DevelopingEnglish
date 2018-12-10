@@ -21,6 +21,8 @@ def getAnswer():
 
 
 def judgeAnswer(input, right_answers):
+    print(right_answers)
+    print(len(right_answers.split('、')))
     if input in right_answers:
         return True
     else:
