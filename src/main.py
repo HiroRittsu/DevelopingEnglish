@@ -19,8 +19,7 @@ def getAnswer():
     while len(app.get_msgs()) == 0:
         time.sleep(0.1)
     elapsed_time = time.time() - start
-    print("elapsed_time:{0}".format(elapsed_time) + "[sec]")
-    return app.get_msgs().pop(0)[1]
+    return app.get_msgs().pop(0)[1], "{0}".format(elapsed_time)
 
 
 def judgeAnswer(input, right_answers):
@@ -49,7 +48,9 @@ def job():
 
         answer = getAnswer()
 
-        result = judgeAnswer(answer, question[2])
+        print(answer[1])
+
+        result = judgeAnswer(answer[0], question[2])
 
         if result == -1:
             app.push_msgs(userID, '不正解')
