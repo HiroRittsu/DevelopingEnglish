@@ -43,7 +43,7 @@ def updataUserdata(id, judge, time):
         right_rate = userdata[2]
     answer_time = time
 
-    ControlDB.update('update userdata set answer_count=' + str(answer_count + 1) + ',right_rate=' + str(
+    ControlDB.update('update userdata set answer_count=' + str(answer_count) + ',right_rate=' + str(
         right_rate) + ',answer_time = ' + str(answer_time) + ' where id=' + str(id))
 
     print("debug", id, judge, time)

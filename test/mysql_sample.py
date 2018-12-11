@@ -18,3 +18,5 @@ print()
 # print(random.sample(ControlDB.select('select id from userdata'), 5)[0][0])
 
 print(ControlDB.select('select * from userdata where id = 2')[0])
+
+ControlDB.update('update userdata set answer_count=10,right_rate=1 where id=2')
