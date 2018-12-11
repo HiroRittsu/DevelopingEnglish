@@ -15,14 +15,17 @@ userID = 'U444d8a9ca45523b6fcda0226769d9983'
 
 
 def getAnswer():
+    start = time.time()
     while len(app.get_msgs()) == 0:
         time.sleep(0.1)
+    elapsed_time = time.time() - start
+    print("elapsed_time:{0}".format(elapsed_time) + "[sec]")
     return app.get_msgs().pop(0)[1]
 
 
 def judgeAnswer(input, right_answers):
     status = -1
-    print(right_answers)
+    # print(right_answers)
     for a in right_answers.split('、'):
         if input in a:
             status = 0
