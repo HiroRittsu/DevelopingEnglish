@@ -1,10 +1,9 @@
-
 import sys
+
 sys.path.append('../lib/')
 import ControlDB
 
 import random
-
 
 ControlDB.init('botDB')
 
@@ -16,4 +15,6 @@ ControlDB.init('botDB')
 # array = np.asarray([])
 # array = np.append(array, ControlDB.select('select id from userdata')[0])
 print()
-print(random.sample(ControlDB.select('select id from userdata'), 5)[0][0])
+# print(random.sample(ControlDB.select('select id from userdata'), 5)[0][0])
+
+print(ControlDB.select('select * from userdata where id = 2')[0])

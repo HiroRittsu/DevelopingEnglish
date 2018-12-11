@@ -34,6 +34,19 @@ def judgeAnswer(input, right_answers):
     return status
 
 
+def updataUserdata(id, judge, time):
+    userdata = ControlDB.select('select * from userdata where id =' + str(id))[0]
+    answer_count = userdata[1] + 1
+    if judge == 1:
+        right_rate = judge
+    else:
+        right_rate = userdata[2]
+    answer_time = time
+
+    ControlDB.update('update userdata set answer_count=' + str(answer_count + 1) + ',right_rate=' + str(
+        right_rate) + ',answer_time = ' + str(answer_time) + ' where id=' + str(id))
+
+
 def job():
     print("job!")
     app.push_msgs(userID, 'start')
@@ -58,6 +71,8 @@ def job():
             app.push_msgs(userID, '惜しい')
         else:
             app.push_msgs(userID, '正解')
+
+        updataUserdata(question_id[0], result, answer[1])
 
         count += 1
 
