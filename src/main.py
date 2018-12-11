@@ -24,7 +24,7 @@ def getAnswer():
 
 def judgeAnswer(input, right_answers):
     status = -1
-    # print(right_answers)
+    print(right_answers)
     for a in right_answers.split('、'):
         if input in a:
             status = 0
