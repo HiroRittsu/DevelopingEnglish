@@ -38,15 +38,13 @@ def updataUserdata(id, judge, time):
     userdata = ControlDB.select('select * from userdata where id =' + str(id))[0]
     answer_count = userdata[1] + 1
     if judge == 1:
-        right_rate = judge
+        right_rate = userdata[2] + 1
     else:
         right_rate = userdata[2]
     answer_time = time
 
     ControlDB.update('update userdata set answer_count=' + str(answer_count) + ',right_rate=' + str(
         right_rate) + ',answer_time = ' + str(answer_time) + ' where id=' + str(id))
-
-    print("debug", id, judge, time)
 
 
 def job():
