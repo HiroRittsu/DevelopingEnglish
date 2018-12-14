@@ -25,8 +25,6 @@ def getAnswer():
 
 def judgeAnswer(question, answer_en):
     status = -1
-    print(answer_en)
-    print("debugs")
     for a in answer_en:
         print(a)
         if a == question:
@@ -68,6 +66,7 @@ def job():
 
         if result == -1:
             app.push_msgs(userID, '不正解')
+            app.push_msgs(userID, '正解例: ' + question[2])
         elif result == 0:
             app.push_msgs(userID, '惜しい')
         else:
