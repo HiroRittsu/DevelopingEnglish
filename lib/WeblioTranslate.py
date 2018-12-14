@@ -36,4 +36,4 @@ def Japanese_to_English(japanese):
     for a in results:
         print(a)
 
-Japanese_to_English('地域')
+    return results
