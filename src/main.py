@@ -26,7 +26,9 @@ def getAnswer():
 def judgeAnswer(question, answer_en):
     status = -1
     print(answer_en)
+    print("debugs")
     for a in answer_en:
+        print(a)
         if a == question:
             status = 1
 
