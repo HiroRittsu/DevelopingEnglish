@@ -7,6 +7,7 @@ import schedule
 sys.path.append('../lib/')
 import LineApp
 import ControlDB
+import WeblioTranslate
 
 app = LineApp.LineApp()
 ControlDB.init('botDB')
@@ -25,9 +26,7 @@ def getAnswer():
 def judgeAnswer(input, right_answers):
     status = -1
     print(right_answers)
-    for a in right_answers.split('、'):
-        if input in a:
-            status = 0
+    for a in right_answers:
         if a == input:
             status = 1
 
@@ -63,7 +62,7 @@ def job():
 
         print(answer[1])
 
-        result = judgeAnswer(answer[0], question[2])
+        result = judgeAnswer(answer[0], WeblioTranslate.Japanese_to_English(answer[0]))
 
         if result == -1:
             app.push_msgs(userID, '不正解')

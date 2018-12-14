@@ -34,6 +34,3 @@ def Japanese_to_English(japanese):
         results.add(r)
 
     print(results)
-
-
-Japanese_to_English('聞く')
