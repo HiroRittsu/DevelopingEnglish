@@ -23,11 +23,11 @@ def getAnswer():
     return app.get_msgs().pop(0)[1], "{0}".format(elapsed_time)
 
 
-def judgeAnswer(input, right_answers):
+def judgeAnswer(question, answer_en):
     status = -1
-    print(right_answers)
-    for a in right_answers:
-        if a == input:
+    print(answer_en)
+    for a in answer_en:
+        if a == question:
             status = 1
 
     return status
@@ -62,7 +62,7 @@ def job():
 
         print(answer[1])
 
-        result = judgeAnswer(answer[0], WeblioTranslate.Japanese_to_English(answer[0]))
+        result = judgeAnswer(question[1], WeblioTranslate.Japanese_to_English(answer[0]))
 
         if result == -1:
             app.push_msgs(userID, '不正解')
