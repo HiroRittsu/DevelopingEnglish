@@ -9,6 +9,13 @@ def Japanese_to_English(japanese):
     url = 'https://ejje.weblio.jp/content/'
     response = requests.get(url + japanese, headers=headers)
     html = lxml.html.fromstring(response.content)
+
+    # もしかして候補
+    candidate = html.xpath('//*[@id="main"]/div[2]/div[2]/div/div[1]/div/a/@href')
+    if not len(candidate) == 0:
+        response = requests.get(candidate[0], headers=headers)
+        html = lxml.html.fromstring(response.content)
+
     # 主な英訳
     gets = html.xpath('//*[@id="summary"]/div[2]/table/tbody/tr/td[2]/text()')
     if not len(gets) == 0:
@@ -19,10 +26,14 @@ def Japanese_to_English(japanese):
             for r in str(gets[0]).split(' '):
                 results.add(r.replace(';', ''))
 
+    gets = html.xpath('//*[@id="hideDictPrsKENJE"]/div[1]/div[1]/div[2]/div/div[1]/p[2]/a/text()')
+    if len(gets) == 0:
+        gets = html.xpath('//*[@id="hideDictPrsKENJE"]/div[1]/div[1]/div[2]/div/div[1]/table/tr/td[2]/a/text()')
+
+    for r in gets:
+        results.add(r)
+
     print(results)
 
-    gets = html.xpath('//*[@id="hideDictPrsKENJE"]/div[1]/div[1]/div[2]/div/div[1]/p[2]/a[1]/text()')
 
-    print(gets)
-
-Japanese_to_English('遊ぶ')
+Japanese_to_English('聞く')
