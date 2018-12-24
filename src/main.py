@@ -88,7 +88,7 @@ def job():
 
 
 schedule.every(1).seconds.do(job)
-schedule.every().days.at("9:10").do(job)
+schedule.every().days.at("22:11").do(job)
 
 
 def main():
