@@ -62,7 +62,7 @@ def job():
         app.push_msgs(userID, '回答 🔽')
         answer = getAnswer()
 
-        if re.compile(r'[\u30A1-\u30F4]+').fullmatch(answer[0]) == None:
+        while not re.compile(r'[\u30A1-\u30F4]+').fullmatch(answer[0]) == None:
             app.push_msgs(userID, 'カタカナはダメ！！')
             app.push_msgs(userID, '回答 🔽')
             answer = getAnswer()
