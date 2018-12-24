@@ -1,7 +1,7 @@
 import random
 import sys
 import time
-
+import re
 import schedule
 
 sys.path.append('../lib/')
@@ -48,7 +48,8 @@ def updataUserdata(id, judge, time):
 
 def job():
     print("job!")
-    app.push_msgs(userID, '何か返信してください。')
+    app.push_msgs(userID, '英語やりますで')
+    app.push_msgs(userID, '何か返信!')
     getAnswer()
     question_ids = random.sample(ControlDB.select('select id from userdata'), 5)
 
@@ -60,6 +61,10 @@ def job():
         app.push_msgs(userID, '●問題' + str(count) + '/5\n  > ' + question[1])
 
         answer = getAnswer()
+        if not re.compile(r'[\u30A1-\u30F4]+').fullmatch(answer).span()[1] == 0:
+            app.push_msgs(userID, 'カタカナはダメ！！')
+            app.push_msgs(userID, '回答 🔽')
+            answer = getAnswer()
 
         print(answer[1])
 
