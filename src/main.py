@@ -90,12 +90,12 @@ def job():
         result = judgeAnswer(question[1], WeblioTranslate.Japanese_to_English(answer[0]))
 
         if result == -1:
-            app.push_msgs(userID, '不正解')
+            app.push_msgs(userID, '不正解　☓')
             app.push_msgs(userID, '正解例: ' + question[2])
         elif result == 0:
             app.push_msgs(userID, '惜しい')
         else:
-            app.push_msgs(userID, '正解')
+            app.push_msgs(userID, '正解 ❍')
 
         updataUserdata(question_id[0], result, answer[1])
 
