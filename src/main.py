@@ -62,6 +62,7 @@ def job():
         app.push_msgs(userID, '回答 🔽')
         answer = getAnswer()
 
+        # カタカナだけの回答は除外
         while not re.compile(r'[\u30A1-\u30F4]+').fullmatch(answer[0]) == None:
             app.push_msgs(userID, 'カタカナはダメ！！')
             app.push_msgs(userID, '回答 🔽')
@@ -87,6 +88,7 @@ def job():
 
 
 schedule.every(1).seconds.do(job)
+schedule.every().day("21:00").do(job)
 
 
 def main():
