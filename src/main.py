@@ -61,7 +61,7 @@ def job():
         app.push_msgs(userID, '●問題' + str(count) + '/5\n  > ' + question[1])
 
         answer = getAnswer()
-        print(re.compile(r'[\u30A1-\u30F4]+').fullmatch(str(answer)))
+        print(re.compile(r'[\u30A1-\u30F4]+').fullmatch(answer))
         if not int(re.compile(r'[\u30A1-\u30F4]+').fullmatch(str(answer)).span()[1]) == 0:
             app.push_msgs(userID, 'カタカナはダメ！！')
             app.push_msgs(userID, '回答 🔽')
