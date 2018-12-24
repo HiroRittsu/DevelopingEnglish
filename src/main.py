@@ -1,3 +1,4 @@
+import datetime
 import random
 import sys
 import time
@@ -85,10 +86,10 @@ def job():
         count += 1
 
     app.push_msgs(userID, '終了')
+    print(datetime.datetime.now())
 
 
-schedule.every(1).seconds.do(job)
-schedule.every().day.at("22:12").do(job)
+schedule.every(1).minutes.do(job)
 
 
 def main():
