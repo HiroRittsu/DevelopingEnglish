@@ -108,11 +108,13 @@ def schedule(plans):
     for plan in plans:
         if datetime.datetime.now().hour == plan[0] and datetime.datetime.now().minute == plan[1]:
             job()
+            while datetime.datetime.now().minute == plan[1]:
+                time.sleep(1)
 
 
 def main():
     while True:
-        schedule([[23, 42], [23, 41]])
+        schedule([[23, 45], [23, 47]])
         time.sleep(1)
 
 
