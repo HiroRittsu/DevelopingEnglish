@@ -114,7 +114,7 @@ def schedule(plans):
 
 def main():
     while True:
-        schedule([[23, 45], [23, 47]])
+        schedule([[0, 0], [23, 47]])
         time.sleep(1)
 
 
