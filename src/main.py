@@ -4,6 +4,7 @@ import sys
 import time
 import re
 import schedule
+import concurrent.futures
 
 sys.path.append('../lib/')
 import LineApp
@@ -90,7 +91,12 @@ def job():
     print(datetime.datetime.now())
 
 
-schedule.every(1).minutes.do(job)
+def job_thread():
+    executor = concurrent.futures.ProcessPoolExecutor(max_workers=1)
+    executor.submit(job)
+
+
+schedule.every(1).minutes.do(job_thread)
 
 
 def main():
