@@ -48,7 +48,8 @@ def updataUserdata(id, judge, time):
 
 def job():
     print("job!")
-    app.push_msgs(userID, 'start')
+    app.push_msgs(userID, '何か返信してください。')
+    getAnswer()
     question_ids = random.sample(ControlDB.select('select id from userdata'), 5)
 
     count = 1
