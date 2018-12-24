@@ -3,8 +3,6 @@ import random
 import sys
 import time
 import re
-import schedule
-import concurrent.futures
 
 sys.path.append('../lib/')
 import LineApp
@@ -18,6 +16,9 @@ userID = 'U444d8a9ca45523b6fcda0226769d9983'
 
 
 def getAnswer():
+    '''
+    :return:
+    '''
     start = time.time()
     while len(app.get_msgs()) == 0:
         time.sleep(0.1)
@@ -26,6 +27,11 @@ def getAnswer():
 
 
 def judgeAnswer(question, answer_en):
+    '''
+    :param question:
+    :param answer_en:
+    :return:
+    '''
     status = -1
     for a in answer_en:
         print(a)
@@ -36,6 +42,12 @@ def judgeAnswer(question, answer_en):
 
 
 def updataUserdata(id, judge, time):
+    '''
+    :param id:
+    :param judge:
+    :param time:
+    :return:
+    '''
     userdata = ControlDB.select('select * from userdata where id =' + str(id))[0]
     answer_count = userdata[1] + 1
     if judge == 1:
@@ -49,8 +61,10 @@ def updataUserdata(id, judge, time):
 
 
 def job():
+    '''
+    :return:
+    '''
     print("job!")
-    print(datetime.datetime.now())
     app.push_msgs(userID, '英語やりますで')
     app.push_msgs(userID, '何か返信!')
     getAnswer()
@@ -88,20 +102,17 @@ def job():
         count += 1
 
     app.push_msgs(userID, '終了')
-    print(datetime.datetime.now())
 
 
-def job_thread():
-    executor = concurrent.futures.ProcessPoolExecutor(max_workers=1)
-    executor.submit(job)
-
-
-schedule.every(1).minutes.do(job_thread)
+def schedule(plans):
+    for plan in plans:
+        if datetime.datetime.now().hour == plan[0] and datetime.datetime.now().minute == plan[1]:
+            job()
 
 
 def main():
     while True:
-        schedule.run_pending()
+        schedule([[23, 42], [23, 41]])
         time.sleep(1)
 
 
