@@ -49,6 +49,7 @@ def updataUserdata(id, judge, time):
 
 def job():
     print("job!")
+    print(datetime.datetime.now())
     app.push_msgs(userID, '英語やりますで')
     app.push_msgs(userID, '何か返信!')
     getAnswer()
