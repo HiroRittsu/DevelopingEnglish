@@ -87,8 +87,8 @@ def job():
     app.push_msgs(userID, '終了')
 
 
-#schedule.every(1).seconds.do(job)
-schedule.every().day("21:00").do(job)
+schedule.every(1).seconds.do(job)
+schedule.every().days.at("21:05").do(job)
 
 
 def main():
