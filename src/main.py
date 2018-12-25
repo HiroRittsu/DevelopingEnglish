@@ -96,7 +96,7 @@ def exam():
         if result == -1:
             app.push_msgs(userID, '不正解　☓')
             app.push_msgs(userID, '正解例: ' + question[2])
-            practice(question_id[0])  # ５回練習
+            practice(question_id[0], question[2])  # ５回練習
         elif result == 0:
             app.push_msgs(userID, '惜しい')
         else:
@@ -112,10 +112,15 @@ def exam():
     app.push_msgs(userID, '終了')
 
 
-def practice(id):
+def practice(id, answer):
     app.push_msgs(userID, '//////練習//////')
+    app.push_msgs(userID, '5回繰り返しましょう！')
     image = ControlDB.select('select * from image where id=' + str(id))[0][1]
-    print(image)
+    for i in range(5):
+        app.push_img(userID, image)
+        app.push_msgs(userID, answer)
+        app.push_msgs(userID, '🔽')
+        getAnswer()
 
     ##############################################################################
 
