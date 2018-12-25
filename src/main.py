@@ -38,7 +38,7 @@ def judgeAnswer(question, answer):
     for a in WeblioTranslate.Japanese_to_English(answer):
         if a == question[1]:
             status = 1
-    for q in str(question[2]).split(","):
+    for q in str(question[2]).split("、"):
         print(q)
 
     return status
