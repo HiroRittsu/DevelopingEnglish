@@ -35,8 +35,6 @@ def judgeAnswer(question, answer):
     :return:
     '''
     status = -1
-    print(question, answer)
-
     for a in WeblioTranslate.Japanese_to_English(answer):
         if a == question[1]:
             status = 1
@@ -126,12 +124,12 @@ def practice(id, question, answer):
             app.push_msgs(userID, question + " : " + answer)
             app.push_msgs(userID, '🔽')
             practice_answer = getAnswer()
-            print("question" + question)
-            result = judgeAnswer(question, practice_answer[0])
-            if result == 1:
-                break
-            else:
-                app.push_msgs(userID, '間違っていますヨ')
+
+            for a in str(answer).split("、"):
+                if a == practice_answer[0]:
+                    break
+                else:
+                    app.push_msgs(userID, '間違っていますヨ')
 
     ##############################################################################
 
