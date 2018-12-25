@@ -120,9 +120,15 @@ def practice(id, question, answer):
     image = ControlDB.select('select * from image where id=' + str(id))[0][1]
     for i in range(5):
         app.push_img(userID, image)
-        app.push_msgs(userID, question + " : " + answer)
-        app.push_msgs(userID, '🔽')
-        getAnswer()
+        while True:
+            app.push_msgs(userID, question + " : " + answer)
+            app.push_msgs(userID, '🔽')
+            result = judgeAnswer(question, getAnswer())
+            if result == 1:
+                break
+            else:
+                app.push_msgs(userID, '間違っていますヨ')
+                app.push_msgs(userID, '🔽')
 
     ##############################################################################
 
