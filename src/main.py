@@ -39,6 +39,7 @@ def judgeAnswer(question, answer):
         if a == question[1]:
             status = 1
     for q in str(question[2]).split("、"):
+        print(q, answer)
         if q == answer:
             status = 1
 
