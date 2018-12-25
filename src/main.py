@@ -79,7 +79,7 @@ def exam():
         question = ControlDB.select(
             'select * from words where id=' + str(question_id[0]))[0]
 
-        app.push_msgs(userID, '●問題' + str(count) + '/5\n  > ' + question[1])
+        app.push_msgs(userID, '●問題' + str(count) + '/' + str(len(question_ids)) + '\n  > ' + question[1])
         app.push_msgs(userID, '回答 🔽')
         answer = getAnswer()
 
@@ -96,6 +96,7 @@ def exam():
         if result == -1:
             app.push_msgs(userID, '不正解　☓')
             app.push_msgs(userID, '正解例: ' + question[2])
+            practice()  # ５回練習
         elif result == 0:
             app.push_msgs(userID, '惜しい')
         else:
@@ -109,6 +110,11 @@ def exam():
         count += 1
 
     app.push_msgs(userID, '終了')
+
+
+def practice():
+    app.push_msgs(userID, '/////////////////////')
+    app.push_msgs(userID, '練習')
 
 
 ##############################################################################
@@ -147,7 +153,7 @@ def option():
 
 def main():
     while True:
-        exam_schedule([[12, 20], [21, 30], [9, 35]])
+        exam_schedule([[8, 10], [12, 20], [21, 30]])
         option()
         time.sleep(1)
 
