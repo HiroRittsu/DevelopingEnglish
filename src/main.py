@@ -122,7 +122,7 @@ def option():
         if option == 'debug':
             app.push_msgs(userID, 'デバッグモード')
             print("デバッグモード")
-        if option == 'test':
+        elif option == 'test':
             app.push_msgs(userID, 'テストモード')
             print("テストモード")
         else:
