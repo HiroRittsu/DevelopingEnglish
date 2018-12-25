@@ -123,7 +123,7 @@ def practice(id, question, answer):
         while True:
             app.push_msgs(userID, question + " : " + answer)
             app.push_msgs(userID, '🔽')
-            result = judgeAnswer(question, getAnswer())
+            result = judgeAnswer(question, getAnswer()[0])
             if result == 1:
                 break
             else:
