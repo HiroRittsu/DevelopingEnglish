@@ -124,7 +124,7 @@ def practice(id, question, answer):
             app.push_msgs(userID, question + " : " + answer)
             app.push_msgs(userID, '🔽')
             practice_answer = getAnswer()
-            print(practice_answer)
+            print("question" + question)
             result = judgeAnswer(question, practice_answer[0])
             if result == 1:
                 break
