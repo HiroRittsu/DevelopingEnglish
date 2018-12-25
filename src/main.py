@@ -123,12 +123,13 @@ def practice(id, question, answer):
         while True:
             app.push_msgs(userID, question + " : " + answer)
             app.push_msgs(userID, '🔽')
-            result = judgeAnswer(question, getAnswer()[0])
+            practice_answer = getAnswer()
+            print(practice_answer)
+            result = judgeAnswer(question, practice_answer[0])
             if result == 1:
                 break
             else:
                 app.push_msgs(userID, '間違っていますヨ')
-                app.push_msgs(userID, '🔽')
 
     ##############################################################################
 
