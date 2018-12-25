@@ -14,6 +14,8 @@ ControlDB.init('botDB')
 
 userID = 'U444d8a9ca45523b6fcda0226769d9983'
 
+DEBUG = False
+
 
 def getAnswer():
     '''
@@ -99,7 +101,10 @@ def job():
         else:
             app.push_msgs(userID, '正解 ❍')
 
-        updataUserdata(question_id[0], result, answer[1])
+        if not DEBUG:
+            updataUserdata(question_id[0], result, answer[1])
+        else:
+            app.push_msgs(userID, '記録はされていません。')
 
         count += 1
 
@@ -107,6 +112,14 @@ def job():
 
 
 ##############################################################################
+
+def debug():
+    global DEBUG
+    app.push_msgs(userID, 'デバッグモード')
+    DEBUG = True
+    job()
+    DEBUG = False
+
 
 def schedule(plans):
     for plan in plans:
@@ -120,8 +133,8 @@ def option():
     if not len(app.get_msgs()) == 0:
         option = app.get_msgs().pop(0)[1]
         if option == 'debug':
-            app.push_msgs(userID, 'デバッグモード')
             print("デバッグモード")
+            debug()
         elif option == 'test':
             app.push_msgs(userID, 'テストモード')
             print("テストモード")
