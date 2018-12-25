@@ -28,17 +28,18 @@ def getAnswer():
     return app.get_msgs().pop(0)[1], "{0}".format(elapsed_time)
 
 
-def judgeAnswer(question, answer_en):
+def judgeAnswer(question, answer):
     '''
     :param question:
     :param answer_en:
     :return:
     '''
     status = -1
-    for a in answer_en:
-        print(a)
-        if a == question:
+    for a in WeblioTranslate.Japanese_to_English(answer):
+        if a == question[1]:
             status = 1
+    for q in str(question[2]).split(","):
+        print(q)
 
     return status
 
@@ -91,7 +92,7 @@ def exam():
 
         print(answer[1])
 
-        result = judgeAnswer(question[1], WeblioTranslate.Japanese_to_English(answer[0]))
+        result = judgeAnswer(question, answer[0])
 
         if result == -1:
             app.push_msgs(userID, '不正解　☓')
