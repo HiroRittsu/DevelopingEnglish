@@ -64,11 +64,11 @@ def updataUserdata(id, judge, time):
 
 ###########################################################################################
 
-def job():
+def exam():
     '''
     :return:
     '''
-    print("job!")
+    print("exam!")
     app.push_msgs(userID, '英語やりますで')
     app.push_msgs(userID, '何か返信!')
     getAnswer()
@@ -117,14 +117,14 @@ def debug():
     global DEBUG
     app.push_msgs(userID, 'デバッグモード')
     DEBUG = True
-    job()
+    exam()
     DEBUG = False
 
 
-def schedule(plans):
+def exam_schedule(plans):
     for plan in plans:
         if datetime.datetime.now().hour == plan[0] and datetime.datetime.now().minute == plan[1]:
-            job()
+            exam()
             while datetime.datetime.now().minute == plan[1]:
                 time.sleep(1)
 
@@ -147,7 +147,7 @@ def option():
 
 def main():
     while True:
-        schedule([[0, 2], [23, 47]])
+        exam_schedule([[12, 20], [21, 30], [9, 35]])
         option()
         time.sleep(1)
 
