@@ -118,8 +118,10 @@ def schedule(plans):
 
 def option():
     if not len(app.get_msgs()) == 0:
-        print(app.get_msgs().pop(0))
+        print(app.get_msgs().pop(0)[1])
 
+
+############################################################################################
 
 def main():
     while True:
