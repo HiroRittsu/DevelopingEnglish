@@ -124,12 +124,14 @@ def practice(id, question, answer):
             app.push_msgs(userID, question + " : " + answer)
             app.push_msgs(userID, '🔽')
             practice_answer = getAnswer()
-
+            flag = True
             for a in str(answer).split("、"):
                 if a == practice_answer[0]:
-                    break
+                    flag = False
                 else:
                     app.push_msgs(userID, '間違っていますヨ')
+            if flag:
+                break
 
     ##############################################################################
 
