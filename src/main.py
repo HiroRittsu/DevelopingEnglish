@@ -60,6 +60,8 @@ def updataUserdata(id, judge, time):
         right_rate) + ',answer_time = ' + str(answer_time) + ' where id=' + str(id))
 
 
+###########################################################################################
+
 def job():
     '''
     :return:
@@ -104,6 +106,8 @@ def job():
     app.push_msgs(userID, '終了')
 
 
+##############################################################################
+
 def schedule(plans):
     for plan in plans:
         if datetime.datetime.now().hour == plan[0] and datetime.datetime.now().minute == plan[1]:
@@ -112,9 +116,15 @@ def schedule(plans):
                 time.sleep(1)
 
 
+def option():
+    if not len(app.get_msgs()) == 0:
+        print(app.get_msgs().pop(0))
+
+
 def main():
     while True:
         schedule([[0, 2], [23, 47]])
+        option()
         time.sleep(1)
 
 
