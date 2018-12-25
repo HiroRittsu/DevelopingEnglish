@@ -120,9 +120,14 @@ def option():
     if not len(app.get_msgs()) == 0:
         option = app.get_msgs().pop(0)[1]
         if option == 'debug':
+            app.push_msgs(userID, 'デバッグモード')
             print("デバッグモード")
         if option == 'test':
+            app.push_msgs(userID, 'テストモード')
             print("テストモード")
+        else:
+            app.push_msgs(userID, 'debug: デバッグモード')
+            app.push_msgs(userID, 'test: テストモード')
 
 
 ############################################################################################
