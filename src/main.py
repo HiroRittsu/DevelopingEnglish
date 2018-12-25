@@ -118,7 +118,11 @@ def schedule(plans):
 
 def option():
     if not len(app.get_msgs()) == 0:
-        print(app.get_msgs().pop(0)[1])
+        option = app.get_msgs().pop(0)[1]
+        if option == 'debug':
+            print("デバッグモード")
+        if option == 'test':
+            print("テストモード")
 
 
 ############################################################################################
