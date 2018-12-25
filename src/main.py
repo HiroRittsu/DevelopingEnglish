@@ -114,7 +114,7 @@ def exam():
 
 def practice(id):
     app.push_msgs(userID, '//////練習//////')
-    image = ControlDB.select('select * from image where id=' + str(id))[0]
+    image = ControlDB.select('select * from image where id=' + str(id))[0][1]
     print(image)
 
     ##############################################################################
