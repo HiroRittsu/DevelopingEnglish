@@ -27,8 +27,10 @@ def fluctuation_correction(japanese):
 
     gets = html.xpath('//*[@id="primary"]/div/div[1]/div[1]/div[2]/ul/li[1]/a/text()')
 
+    if len(gets) == 0:
+        gets = japanese
     return gets[0].replace("Sentence search for ", "")
 
 
-print(fluctuation_correction('ぎょうさん'))
+print(fluctuation_correction('?'))
 print(Japanese_translation('meaning'))
