@@ -23,8 +23,8 @@ def getImageURL(keyword):
                 image_links.append(e.replace("\"", "").replace("ou:", ""))
 
     for link in image_links:
-        print(link)
-        if 'https://' in link:
-            return link
+        if str(link)[-4:] == '.jpg' or str(link)[-4:] == '.png':
+            if 'https://' in link:
+                return link
 
     return 'https://www.suzuran-dc.com/wp-content/uploads/non-image.jpg'
