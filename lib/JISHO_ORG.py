@@ -30,7 +30,3 @@ def fluctuation_correction(japanese):
     if len(gets) == 0:
         gets = japanese
     return gets[0].replace("Sentence search for ", "")
-
-
-print(fluctuation_correction('?'))
-print(Japanese_translation('meaning'))
