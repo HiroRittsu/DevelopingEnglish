@@ -31,4 +31,4 @@ def fluctuation_correction(japanese):
 
 
 print(fluctuation_correction('ぎょうさん'))
-print(Japanese_translation('careful'))
+print(Japanese_translation('meaning'))

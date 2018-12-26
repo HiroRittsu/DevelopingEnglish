@@ -8,6 +8,7 @@ sys.path.append('../lib/')
 import LineApp
 import ControlDB
 import WeblioTranslate
+import JISHO_ORG
 
 app = LineApp.LineApp()
 ControlDB.init('botDB')
@@ -28,18 +29,18 @@ def getAnswer():
     return app.get_msgs().pop(0)[1], "{0}".format(elapsed_time)
 
 
-def judgeAnswer(question, answer):
+def judge_jp_answer(question, answer):
     '''
     :param question:
-    :param answer_en:
+    :param answer:
     :return:
     '''
     status = -1
-    for a in WeblioTranslate.Japanese_to_English(answer):
-        if a == question[1]:
-            status = 1
-    for q in str(question[2]).split("、"):
-        if q == answer:
+    meanings = JISHO_ORG.Japanese_translation(question)
+    answer = JISHO_ORG.fluctuation_correction(answer)  # ゆらぎスペル修正
+
+    for meaning in meanings:
+        if meaning == answer:
             status = 1
 
     return status
@@ -78,10 +79,10 @@ def exam():
 
     count = 1
     for question_id in question_ids:
-        question = ControlDB.select(
+        wordset = ControlDB.select(
             'select * from words where id=' + str(question_id[0]))[0]
 
-        app.push_msgs(userID, '●問題' + str(count) + '/' + str(len(question_ids)) + '\n  > ' + question[1])
+        app.push_msgs(userID, '●問題' + str(count) + '/' + str(len(question_ids)) + '\n  > ' + wordset[1])
         app.push_msgs(userID, '回答 🔽')
         answer = getAnswer()
 
@@ -93,12 +94,12 @@ def exam():
 
         print(answer[1])
 
-        result = judgeAnswer(question, answer[0])
+        result = judge_jp_answer(wordset[1], answer[0])
 
         if result == -1:
             app.push_msgs(userID, '不正解　☓')
-            app.push_msgs(userID, '正解例: ' + question[2])
-            practice(question_id[0], question[1], question[2])  # ５回練習
+            app.push_msgs(userID, '正解例: ' + wordset[2])
+            practice(question_id[0], wordset[1], wordset[2])  # ５回練習
         elif result == 0:
             app.push_msgs(userID, '惜しい')
         else:
