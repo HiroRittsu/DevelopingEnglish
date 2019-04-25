@@ -53,22 +53,31 @@ def get_word_group(words: list, answer: str, count: int):
 def judge(input: str, answer: str, translator: Translator):
 	if input == answer:
 		print("正解", '(' + translator.translate(answer, dest='ja').text + ')')
+		return True
 	else:
 		print("不正解:", answer, '(' + translator.translate(answer, dest='ja').text + ')')
+		return False
 
 
 def main():
 	original_words = get_words()
 	words = random.sample(original_words, k=len(original_words))
 	translator = Translator()
+	count = 0
 
 	for i in range(len(words)):
 		answer, question = question_sentence(words[i][0], words[i][1])
 		print(i + 1, ': ' + question)
-		print(get_word_group(words, words[i][0], 3))
-		judge(input(), answer, translator)
+		print(get_word_group(words, words[i][0], 5))
+		if judge(input(), answer, translator):
+			count += 1
 		print("")
+
+	print("正解率 →", str(float(count / len(original_words)) * 100) + ' %')
+	print("########################################################")
+	print("")
 
 
 if __name__ == '__main__':
-	main()
+	while True:
+		main()
