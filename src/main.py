@@ -1,5 +1,6 @@
 import csv
 import random
+from googletrans import Translator
 
 DATA_BASE_DIR = '../data/'
 
@@ -46,25 +47,27 @@ def get_word_group(words: list, answer: str, count: int):
 	result = ''
 	for i in range(len(selected)):
 		result += selected[i] + ' , '
-	return result[0:-2]
+	return '[ ' + result[0:-3] + ' ]'
 
 
-def judge(input: str, answer: str):
+def judge(input: str, answer: str, translator: Translator):
 	if input == answer:
-		print("正解")
+		print("正解", '(' + translator.translate(answer, dest='ja').text + ')')
 	else:
-		print("不正解:", answer)
+		print("不正解:", answer, '(' + translator.translate(answer, dest='ja').text + ')')
 
 
 def main():
 	original_words = get_words()
 	words = random.sample(original_words, k=len(original_words))
+	translator = Translator()
 
 	for i in range(len(words)):
 		answer, question = question_sentence(words[i][0], words[i][1])
 		print(i + 1, ': ' + question)
-		print(get_word_group(words, answer, 10))
-		judge(input(), answer)
+		print(get_word_group(words, words[i][0], 3))
+		judge(input(), answer, translator)
+		print("")
 
 
 if __name__ == '__main__':
