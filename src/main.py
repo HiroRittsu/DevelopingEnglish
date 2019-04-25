@@ -1,6 +1,21 @@
 import csv
+import random
 
 DATA_BASE_DIR = '../data/'
+
+
+def get_words():
+	'''
+	csvから読み取り
+	:return:
+	'''
+	words = []
+	with open(DATA_BASE_DIR + 'wordtest_1.csv', 'r') as f:
+		reader = csv.reader(f)
+
+		for row in reader:
+			words.append(row)
+	return words
 
 
 def question_sentence(row_word: str, row_sentence: str):
@@ -16,16 +31,40 @@ def question_sentence(row_word: str, row_sentence: str):
 			return word_list[i], row_sentence.replace(word_list[i], '_' * len(word_list[i]))
 
 
+def get_word_group(words: list, answer: str, count: int):
+	example_words = []
+	for i in range(len(words)):
+		example_words.append(words[i][0])
+	selected = random.sample(example_words, k=count)
+
+	# 答えが含まれていない場合
+	if not answer in selected:
+		selected.pop()
+		selected.append(answer)
+		selected = random.sample(selected, k=len(selected))
+
+	result = ''
+	for i in range(len(selected)):
+		result += selected[i] + ' , '
+	return result[0:-2]
+
+
+def judge(input: str, answer: str):
+	if input == answer:
+		print("正解")
+	else:
+		print("不正解:", answer)
+
+
 def main():
-	words = []
-	with open(DATA_BASE_DIR + 'wordtest_1.csv', 'r') as f:
-		reader = csv.reader(f)
+	original_words = get_words()
+	words = random.sample(original_words, k=len(original_words))
 
-		for row in reader:
-			words.append(row)
-
-	print(words)
-	print(question_sentence(words[3][0], words[3][1]))
+	for i in range(len(words)):
+		answer, question = question_sentence(words[i][0], words[i][1])
+		print(i + 1, ': ' + question)
+		print(get_word_group(words, answer, 10))
+		judge(input(), answer)
 
 
 if __name__ == '__main__':
