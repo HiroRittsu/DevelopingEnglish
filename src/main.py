@@ -11,7 +11,7 @@ def get_words():
 	:return:
 	'''
 	words = []
-	with open(DATA_BASE_DIR + 'wordtest_1.csv', 'r') as f:
+	with open(DATA_BASE_DIR + 'wordtest_3.csv', 'r') as f:
 		reader = csv.reader(f)
 
 		for row in reader:
@@ -30,6 +30,9 @@ def question_sentence(row_word: str, row_sentence: str):
 	for i in range(len(word_list)):
 		if row_word == word_list[i][:len(row_word)]:
 			return word_list[i], row_sentence.replace(word_list[i], '_' * len(word_list[i]))
+
+	answer = row_sentence.split('*')[1]
+	return answer, row_sentence.replace('*' + answer + '*', '_' * len(answer))
 
 
 def get_word_group(words: list, answer: str, count: int):
@@ -68,7 +71,7 @@ def main():
 	for i in range(len(words)):
 		answer, question = question_sentence(words[i][0], words[i][1])
 		print(i + 1, ': ' + question)
-		print(get_word_group(words, words[i][0], 5))
+		print(get_word_group(words, words[i][0], 30))
 		if judge(input(), answer, translator):
 			count += 1
 		print("")
