@@ -36,9 +36,9 @@ channel_access_token = ''
 with open('../token', 'r') as f:
 	for l in f.readlines():
 		if 'LINE_CHANNEL_SECRET' in l:
-			channel_secret = l.split(':')[1]
+			channel_secret = l.split(':')[1].replace('\n', '')
 		if 'LINE_CHANNEL_ACCESS_TOKEN' in l:
-			channel_access_token = l.split(':')[1]
+			channel_access_token = l.split(':')[1].replace('\n', '')
 
 line_bot_api = LineBotApi(channel_access_token)
 
