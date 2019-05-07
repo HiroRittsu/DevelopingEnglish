@@ -20,7 +20,7 @@ msgs = []
 
 #################handler##########
 # get channel_secret and channel_access_token from your environment variable
-token_file = np.loadtxt('../token',delimiter=':',dtype='str')
+token_file = np.loadtxt('../token', delimiter=':', dtype='str')
 channel_secret = token_file[0][1]
 channel_access_token = token_file[1][1]
 
@@ -107,6 +107,7 @@ class LineApp:
 	def get_msgs(self):
 		result = []
 		for msg in msgs:
+			print(msg)
 			if msg[0] == self.id:
 				result.append([self.id, msg[1]])
 		return result
