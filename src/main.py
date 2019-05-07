@@ -172,7 +172,7 @@ def option():
 
 def main():
 	while True:
-		exam_schedule([[8, 10], [12, 20], [21, 30]])
+		#exam_schedule([[8, 10], [12, 20], [21, 30]])
 		option()
 		time.sleep(1)
 
