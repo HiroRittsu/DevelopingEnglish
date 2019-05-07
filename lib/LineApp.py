@@ -25,7 +25,7 @@ channel_secret = token_file[0][1]
 channel_access_token = token_file[1][1]
 
 line_bot_api = LineBotApi(channel_access_token)
-handler = WebhookHandler(channel_access_token)
+handler = WebhookHandler(channel_secret)
 parser = WebhookParser(channel_secret)
 
 app = Flask(__name__)
