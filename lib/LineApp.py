@@ -1,5 +1,6 @@
 import json
 import concurrent.futures
+import numpy as np
 import os
 import sys
 from argparse import ArgumentParser
@@ -19,14 +20,9 @@ msgs = []
 
 #################handler##########
 # get channel_secret and channel_access_token from your environment variable
-channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
-channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
-if channel_secret is None:
-	print('Specify LINE_CHANNEL_SECRET as environment variable.')
-	sys.exit(1)
-if channel_access_token is None:
-	print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
-	sys.exit(1)
+token_file = np.loadtxt('../token',delimiter=':',dtype='str')
+channel_secret = token_file[0][1]
+channel_access_token = token_file[1][1]
 
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
