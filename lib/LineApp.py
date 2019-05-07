@@ -21,8 +21,8 @@ msgs = []
 #################handler##########
 # get channel_secret and channel_access_token from your environment variable
 token_file = np.loadtxt('../token', delimiter=':', dtype='str')
-channel_secret = token_file[0][1]
-channel_access_token = token_file[1][1]
+channel_secret = str(token_file[0][1]).replace('b\'', '').replace('\'', '')
+channel_access_token = str(token_file[1][1]).replace('b\'', '').replace('\'', '')
 
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
