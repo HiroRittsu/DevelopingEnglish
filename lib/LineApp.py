@@ -25,35 +25,13 @@ channel_secret = token_file[0][1]
 channel_access_token = token_file[1][1]
 
 line_bot_api = LineBotApi(channel_access_token)
-handler = WebhookHandler(channel_secret)
+handler = WebhookHandler(channel_access_token)
 parser = WebhookParser(channel_secret)
 
 app = Flask(__name__)
 
 
 ###################################
-@app.route("/callback", methods=['POST'])
-def callback():
-    global userId
-    global groupId
-    # get X-Line-Signature header value
-    signature = request.headers['X-Line-Signature']
-    # get request body as text
-    body = request.get_data(as_text=True)
-    app.logger.info("Request body: " + body)
-    print(json.loads(body))
-    userId = json.loads(body)["events"][0]["source"]["userId"]
-    #groupId = json.loads(body)["events"][0]["source"]["groupId"]
-    # handle webhook body
-    try:
-        handler.handle(body, signature)
-        # handler.add(body, signature)
-    except InvalidSignatureError:
-        abort(400)
-    return 'OK'
-
-'''
-
 # 受け取り
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -89,7 +67,6 @@ def callback():
 		msgs.append([id, event.message.text])
 
 	return 'OK'
-	'''
 
 
 #####################################################
