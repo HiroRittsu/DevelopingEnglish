@@ -46,11 +46,11 @@ def callback():
 	print(body)
 
 	# parse webhook body
-	try:
-		events = parser.parse(body, signature)
-	except InvalidSignatureError:
-		abort(400)
-
+	#try:
+	#	events = parser.parse(body, signature)
+	#except InvalidSignatureError:
+	#	abort(400)
+	events = parser.parse(body, signature)
 	if 'userId' in body:
 		id = json.loads(body)["events"][0]["source"]["userId"]
 
