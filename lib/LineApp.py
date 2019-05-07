@@ -35,6 +35,25 @@ app = Flask(__name__)
 # 受け取り
 @app.route("/callback", methods=['POST'])
 def callback():
+	# get X-Line-Signature header value
+	signature = request.headers['X-Line-Signature']
+
+	# get request body as text
+	body = request.get_data(as_text=True)
+	app.logger.info("Request body: " + body)
+
+	# handle webhook body
+	try:
+		handler.handle(body, signature)
+	except InvalidSignatureError:
+		abort(400)
+
+	return 'OK'
+
+
+'''
+@app.route("/callback", methods=['POST'])
+def callback():
 	id = ''
 	events = None
 	signature = request.headers['X-Line-Signature']
@@ -49,7 +68,7 @@ def callback():
 	try:
 		events = parser.parse(body, signature)
 	except InvalidSignatureError:
-		abort(200)
+		abort(400)
 
 	if 'userId' in body:
 		id = json.loads(body)["events"][0]["source"]["userId"]
@@ -67,6 +86,7 @@ def callback():
 		msgs.append([id, event.message.text])
 
 	return 'OK'
+	'''
 
 
 #####################################################
