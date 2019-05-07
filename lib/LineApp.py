@@ -49,7 +49,7 @@ def callback():
 	try:
 		events = parser.parse(body, signature)
 	except InvalidSignatureError:
-		abort(400)
+		abort(200)
 
 	if 'userId' in body:
 		id = json.loads(body)["events"][0]["source"]["userId"]
