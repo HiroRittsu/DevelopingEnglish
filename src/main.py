@@ -71,11 +71,8 @@ def main():
 	for i in range(len(words)):
 		answer, question = question_sentence(words[i][0], words[i][1])
 		print(i + 1, ': ' + question)
-<<<<<<< HEAD
 		print(get_word_group(words, words[i][0], 3))
-=======
-		print(get_word_group(words, words[i][0], 32))
->>>>>>> 47d9b54f261c4e7a7735183f4e62ace099a9308b
+
 		if judge(input(), answer, translator):
 			count += 1
 		print("")
