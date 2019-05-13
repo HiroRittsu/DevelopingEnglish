@@ -11,7 +11,7 @@ def get_words():
 	:return:
 	'''
 	words = []
-	with open(DATA_BASE_DIR + 'wordtest_3.csv', 'r') as f:
+	with open(DATA_BASE_DIR + 'wordtest_5.csv', 'r') as f:
 		reader = csv.reader(f)
 
 		for row in reader:
@@ -71,7 +71,7 @@ def main():
 	for i in range(len(words)):
 		answer, question = question_sentence(words[i][0], words[i][1])
 		print(i + 1, ': ' + question)
-		print(get_word_group(words, words[i][0], 30))
+		print(get_word_group(words, words[i][0], 3))
 		if judge(input(), answer, translator):
 			count += 1
 		print("")
