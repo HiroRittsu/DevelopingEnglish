@@ -12,13 +12,14 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 import json
+import numpy as np
 import os
 import sys
 from argparse import ArgumentParser
 
 from flask import Flask, request, abort
 from linebot import (
-	LineBotApi, WebhookHandler
+	LineBotApi, WebhookHandler, WebhookParser
 )
 from linebot.exceptions import (
 	InvalidSignatureError
@@ -30,51 +31,49 @@ from linebot.models import (
 app = Flask(__name__)
 
 # get channel_secret and channel_access_token from your environment variable
-channel_secret = ''
-channel_access_token = ''
-with open('../token', 'r') as f:
-	for l in f.readlines():
-		if 'LINE_CHANNEL_SECRET' in l:
-			channel_secret = l.split(':')[1].replace('\n', '')
-		if 'LINE_CHANNEL_ACCESS_TOKEN' in l:
-			channel_access_token = l.split(':')[1].replace('\n', '')
+token_file = np.loadtxt('../token', delimiter=':', dtype='str')
+channel_secret = str(token_file[0][1]).replace('b\'', '').replace('\'', '')
+channel_access_token = str(token_file[1][1]).replace('b\'', '').replace('\'', '')
+
+print(channel_secret)
+print(channel_access_token)
 
 line_bot_api = LineBotApi(channel_access_token)
-handler = WebhookHandler(channel_secret)
+parser = WebhookParser(channel_secret)
 
 
 @app.route("/callback", methods=['POST'])
 def callback():
-	# get X-Line-Signature header value
+	id = ''
+	events = None
 	signature = request.headers['X-Line-Signature']
 
 	# get request body as text
 	body = request.get_data(as_text=True)
-	app.logger.info("Request body: " + body)
+	# app.logger.info("Request body: " + body)
 
-	print(json.loads(body))
+	print(body)
 
-	# handle webhook body
+	# parse webhook body
 	try:
-		handler.handle(body, signature)
-		# handler.add(body, signature)
+		events = parser.parse(body, signature)
 	except InvalidSignatureError:
 		abort(400)
 
+	if 'userId' in body:
+		id = json.loads(body)["events"][0]["source"]["userId"]
+
+	if 'groupId' in body:
+		id = json.loads(body)["events"][0]["source"]["groupId"]
+
+	# if event is MessageEvent and message is TextMessage, then echo text
+	for event in events:
+		if not isinstance(event, MessageEvent):
+			continue
+		if not isinstance(event.message, TextMessage):
+			continue
+
 	return 'OK'
-
-
-@handler.add(MessageEvent, message=TextMessage)
-def message_text(event):
-	line_bot_api.reply_message(
-		event.reply_token,
-		TextSendMessage(text=event.message.text)
-	)
-
-	line_bot_api.push_message(
-		'U444d8a9ca45523b6fcda0226769d9983',
-		TextSendMessage("Hello")
-	)
 
 
 if __name__ == "__main__":
