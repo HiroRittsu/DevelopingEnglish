@@ -11,7 +11,7 @@ def get_words():
     :return:
     """
     words = []
-    with open(DATA_BASE_DIR + 'unit11.csv', 'r') as f:
+    with open(DATA_BASE_DIR + 'unit12.csv', 'r') as f:
         reader = csv.reader(f)
         
         for row in reader:
@@ -25,7 +25,7 @@ def get_answer_means():
     :return:
     """
     words = {}
-    with open(DATA_BASE_DIR + 'unit11_answer.csv', 'r') as f:
+    with open(DATA_BASE_DIR + 'unit12_answer.csv', 'r') as f:
         reader = csv.reader(f)
         for row in reader:
             words.setdefault(row[0], row[1])
