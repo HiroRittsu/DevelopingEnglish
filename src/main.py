@@ -11,7 +11,7 @@ def get_words():
     :return:
     """
     words = []
-    with open(DATA_BASE_DIR + 'unit12.csv', 'r') as f:
+    with open(DATA_BASE_DIR + 'wordtest_12.csv', 'r') as f:
         reader = csv.reader(f)
         
         for row in reader:
@@ -25,7 +25,7 @@ def get_answer_means():
     :return:
     """
     words = {}
-    with open(DATA_BASE_DIR + 'unit12_answer.csv', 'r') as f:
+    with open(DATA_BASE_DIR + 'unit11-12_answer.csv', 'r') as f:
         reader = csv.reader(f)
         for row in reader:
             words.setdefault(row[0], row[1])
@@ -98,9 +98,9 @@ def judge_offline(input_word: str, answer: str, translator_list: dict):
 def main():
     original_words = get_words()
     words = random.sample(original_words, k=len(original_words))
-    # translator = Translator()
+    translator = Translator()
     # オフライン時に利用する回答リスト
-    offline_translator_list = get_answer_means()
+    #offline_translator_list = get_answer_means()
     count = 0
     
     for i in range(len(words)):
@@ -108,8 +108,8 @@ def main():
         print(i + 1, ': ' + question)
         print(get_word_group(words, words[i][0], 3))
         
-        if judge_offline(input(), answer, offline_translator_list):
-            # if judge(input(), answer, translator):
+        #if judge_offline(input(), answer, offline_translator_list):
+        if judge(input(), answer, translator):
             count += 1
         print("")
     
